@@ -16,15 +16,34 @@
     <div class="wrapper">
       <header>
         <h1>Ascend</h1>
+
+        <p id="demo">Click me.</p>
+
+        <script>
+        document.getElementById("demo").onclick = function() {myFunction()};
+
+        function myFunction() {
+            document.getElementById("demo").innerHTML = "YOU CLICKED ME!";
+        }
+        </script>
+
+        <button onclick="getElementById('demo').innerHTML=Date()">What is the time?</button>
+
+        <p id="demo"></p>
+
+
+
+
         <form action="action_page.php">
           <fieldset>
           <legend>Personal information:</legend>
           First name:<br>
-          <input type="text" name="firstname" value="Mickey">
+          <input type="text" name="firstname" value="">
           <br>
           Last name:<br>
-          <input type="text" name="lastname" value="Mouse">
-          <br><br>
+          <input type="text" name="lastname" value="">
+          <br>
+          Email:<br>
           <input type="submit" value="Submit"></fieldset>
         </form>
 
