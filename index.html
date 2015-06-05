@@ -18,21 +18,6 @@
       <header>
         <h1>Ascend</h1>
 
-        <p id="demo">Click me.</p>
-
-        <script>
-        document.getElementById("demo").onclick = function() {myFunction()};
-
-        function myFunction() {
-            document.getElementById("demo").innerHTML = "YOU CLICKED ME!";
-        }
-        </script>
-
-        <button onclick="getElementById('demo1').innerHTML=Date()">What is the time?</button>
-
-        <p id="demo1"></p>
-
-
         <a href="#openModal">Register</a>
 
         <div id="openModal" class="modalDialog">
@@ -42,25 +27,52 @@
             <form action="action_page.php">
               <fieldset>
               <legend>Personal information:</legend>
-              First name:<br>
-              <input type="text" name="firstname" value="">
-              <br>
-              Last name:<br>
-              <input type="text" name="lastname" value="">
-              <br>
-              Email:<br>
-              <input type="text" name="email" value="">
-              <br>
-              <input type="submit" value="Submit"></fieldset>
+                First name: <br>  <input type="text" name="firstname" value="">   <br>
+                Last name:  <br>  <input type="text" name="lastname" value="">  <br>
+                Email:      <br>  <input type="text" name="email" value="">   <br>
+                <input type="submit" value="Submit">
+              </fieldset>
            </form>
           </div>
         </div>
-
+              
+        <div id="table" class="table-editable">
+          <span class="table-add glyphicon glyphicon-plus"></span>
+          <table class="table">
+            <tr>
+              <th>Name</th>
+              <th>Value</th>
+              <th></th>
+              <th></th>
+            </tr>
+            <tr>
+              <td contenteditable="true">Stir Fry</td>
+              <td contenteditable="true">stir-fry</td>
+              <td>
+                <span class="table-remove glyphicon glyphicon-remove"></span>
+              </td>
+              <td>
+                <span class="table-up glyphicon glyphicon-arrow-up"></span>
+                <span class="table-down glyphicon glyphicon-arrow-down"></span>
+              </td>
+            </tr>
+            <!-- This is our clonable table line -->
+            <tr class="hide">
+              <td contenteditable="true">Untitled</td>
+              <td contenteditable="true">undefined</td>
+              <td>
+                <span class="table-remove glyphicon glyphicon-remove"></span>
+              </td>
+              <td>
+                <span class="table-up glyphicon glyphicon-arrow-up"></span>
+                <span class="table-down glyphicon glyphicon-arrow-down"></span>
+              </td>
+            </tr>
+          </table>
+        </div>
         
 
         <p class="view"><a href="https://github.com/unFearing/Ascend">View the Project on GitHub <small>unFearing/Ascend</small></a></p>
-
-
         <ul>
           <li><a href="https://github.com/unFearing/Ascend/zipball/master">Download <strong>ZIP File</strong></a></li>
           <li><a href="https://github.com/unFearing/Ascend/tarball/master">Download <strong>TAR Ball</strong></a></li>
@@ -70,8 +82,6 @@
       <section>
         <h3>
 <a id="ascend-member-information" class="anchor" href="#ascend-member-information" aria-hidden="true"><span class="octicon octicon-link"></span></a>Member Information</h3>
-
-
       </section>
       <footer>
         <p>This project is maintained by <a href="https://github.com/unFearing">unFearing</a></p>
