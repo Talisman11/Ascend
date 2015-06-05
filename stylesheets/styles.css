@@ -95,7 +95,7 @@ img {
   max-width:100%;
 }
 
-header {
+.github-links {
   width:270px;
   float:left;
   position:fixed;
@@ -190,13 +190,13 @@ footer {
     margin:0;
   }
   
-  header, section, footer {
+  .github-links, section, footer {
     float:none;
     position:static;
     width:auto;
   }
   
-  header {
+  .github-links {
     padding-right:320px;
   }
   
@@ -207,7 +207,7 @@ footer {
     margin:0 0 20px;
   }
   
-  header a small {
+  .github-links a small {
     display:inline;
   }
   
@@ -223,11 +223,11 @@ footer {
     word-wrap:break-word;
   }
   
-  header {
+  .github-links {
     padding:0;
   }
   
-  .github-links ul, header p.view {
+  .github-links ul, .github-links p.view {
     position:static;
   }
   
