@@ -74,15 +74,6 @@
   }
 }
 
-.table-up, .table-down {
-  color: #007;
-  cursor: pointer;
-  
-  &:hover {
-    color: #00f;
-  }
-}
-
 .table-add {
   color: #070;
   cursor: pointer;
