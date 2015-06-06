@@ -52,14 +52,7 @@
 
 .close:hover { background: #00d9ff; }
 
-
-.table-editable {
-  position: relative;
-  
-  .glyphicon {
-    font-size: 20px;
-  }
-}
+/*Table features*/
 
 @import "compass/css3";
 
