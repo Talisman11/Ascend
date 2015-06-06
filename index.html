@@ -5,9 +5,12 @@
     <meta http-equiv="X-UA-Compatible" content="chrome=1">
     <title>Ascend by unFearing</title>
 
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css">
+    
     <link rel="stylesheet" href="stylesheets/styles.css">
     <link rel="stylesheet" href="stylesheets/github-light.css">
-    <link rel="stylesheet" href="stylesheets/content.css"
+    <link rel="stylesheet" href="stylesheets/content.css">
     <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
     <!--[if lt IE 9]>
     <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
@@ -25,7 +28,42 @@
           Member Information
         </h3>
       </section>
-
+      
+      <div id="table" class="table-editable">
+        <span class="table-add glyphicon glyphicon-plus"></span>
+        <table class="table">
+          <tr>
+            <th>Name</th>
+            <th>Value</th>
+            <th></th>
+            <th></th>
+          </tr>
+          <tr>
+            <td contenteditable="true">Stir Fry</td>
+            <td contenteditable="true">stir-fry</td>
+            <td>
+              <span class="table-remove glyphicon glyphicon-remove"></span>
+            </td>
+            <td>
+              <span class="table-up glyphicon glyphicon-arrow-up"></span>
+              <span class="table-down glyphicon glyphicon-arrow-down"></span>
+            </td>
+          </tr>
+          <!-- This is our clonable table line -->
+          <tr class="hide">
+            <td contenteditable="true">Untitled</td>
+            <td contenteditable="true">undefined</td>
+            <td>
+              <span class="table-remove glyphicon glyphicon-remove"></span>
+            </td>
+            <td>
+              <span class="table-up glyphicon glyphicon-arrow-up"></span>
+              <span class="table-down glyphicon glyphicon-arrow-down"></span>
+            </td>
+          </tr>
+        </table>
+      </div>
+      
       <div class="main">
         <ul>
           <li>
