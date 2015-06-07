@@ -9,7 +9,7 @@ $('.table-remove').click(function () {
   $(this).parents('tr').detach();
 });
 
-function insertRow() {
+function insert() {
     var table = document.getElementById("table");
     var row = table.insertRow(0);
     var cell1 = row.insertCell(0);
