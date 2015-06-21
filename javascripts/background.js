@@ -1,4 +1,4 @@
-var Firebase = require("firebase");
+
 
 var $TABLE = $('#table');
 
@@ -19,3 +19,5 @@ function insert() {
     cell1.innerHTML = "NEW CELL1";
     cell2.innerHTML = "NEW CELL2";
 }
+
+var Firebase = require("firebase");
