@@ -1,3 +1,5 @@
+var Firebase = require("firebase");
+
 var $TABLE = $('#table');
 
 $('.table-add').click(function () {
