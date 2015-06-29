@@ -50,10 +50,13 @@
                 <form action="action_page.php">
                   <fieldset>
                   <legend>User information:</legend>
-                    First name: <br>  <input type="text" name="firstname" value="">   <br>
-                    Last name:  <br>  <input type="text" name="lastname" value="">  <br>
+                    First name: <br>  <input class="example-leaderboard-name" type="text" id="nameInput" placeholder="First name">   <br>
+                    Last name:  <br>  <input class="example-leaderboard-info" type="text" id="infoInput" placeholder="Enter extra data">  <br>
                     Email:      <br>  <input type="text" name="email" value="">   <br>
                     Password:   <br>  <input type="text" name="password" value="">   <br>
+                    Score:      <br>  <input class="example-leaderboard-score" type="text" id="scoreInput" placeholder="Record your score..."> <br>
+
+                    <input class="example-leaderboard-score" type="text" id="scoreInput" placeholder="Record your score...">
                     <input type="submit" value="Submit">
                   </fieldset>
                </form>
@@ -135,9 +138,9 @@
         function addScore(scoreSnapshot, prevScoreName) {
           var newScoreRow = $("<tr/>");
 
-          newScoreRow.append($("<td/>").append($("<em/>").text(scoreSnapshot.val().name)));
+          newScoreRow.append($("<td/>").append($("<em/>").text(scoreSnapshot.val().name))); //random html highlighting
 
-          newScoreRow.append($("<td/>").append($("<em/>").text(scoreSnapshot.val().info)));
+          newScoreRow.append($("<td/>").append($("<em/>").text(scoreSnapshot.val().info))); //random html highlighting
           newScoreRow.append($("<td/>").text(scoreSnapshot.val().score));
           // Store a reference to the table row so we can get it again later.
           tr_References[scoreSnapshot.key()] = newScoreRow;
