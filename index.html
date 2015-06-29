@@ -132,7 +132,7 @@
         // Helper function that takes a new score snapshot and adds an appropriate row to our leaderboard table.
         function addScore(scoreSnapshot, prevScoreName) {
           var newScoreRow = $("<tr/>");
-          newScoreRow.append($("<td/>").append($("<em/>").text(scoreSnapshot.val().name()))); //name
+          newScoreRow.append($("<td/>").append($("<em/>").text(scoreSnapshot.val().name)); //name
 
 
           newScoreRow.append($("<td/>").text(scoreSnapshot.val().score)); //score
