@@ -119,6 +119,7 @@
         </table>
         <div>
           <input class="example-leaderboard-name" type="text" id="nameInput" placeholder="Enter a name">
+          <input class="example-leaderboard-info" type="text" id="infoInput" placeholder="Enter extra data">
           <input class="example-leaderboard-score" type="text" id="scoreInput" placeholder="Record your score...">
         </div>
       </div>
@@ -183,6 +184,7 @@
         $("#scoreInput").keypress(function (e) {
           if (e.keyCode == 13) {
             var newScore = $("#scoreInput").val();
+            var info = $("#infoInput").val();
             var name = $("#nameInput").val();
             $("#scoreInput").val("");
 
@@ -192,7 +194,7 @@
             var userScoreRef = scoreListRef.child(name);
 
             // Use setWithPriority to put the name / score in Firebase, and set the priority to be the score.
-            userScoreRef.setWithPriority({ name:name, score:newScore }, newScore);
+            userScoreRef.setWithPriority({ name:name, info:info, score:newScore }, newScore);
           }
         });
       </script>
