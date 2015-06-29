@@ -134,7 +134,7 @@
           var newScoreRow = $("<tr/>");
           newScoreRow.append($("<td/>").append($("<em/>").text(scoreSnapshot.val().name)); //name
 
-
+          newScoreRow.append($("<td/>").text(scoreSnapshot.val().name2));
           newScoreRow.append($("<td/>").text(scoreSnapshot.val().score)); //score
 
           // Store a reference to the table row so we can get it again later.
