@@ -127,6 +127,33 @@
         // Create our Firebase reference
         var scoreListRef = new Firebase('https://vivid-torch-8260.firebaseio.com/'); //the database url
 
+        /*----------------------------------------------------------------------------------------------*/
+        ref.createUser({
+        email    : "bobtony@firebase.com",
+        password : "correcthorsebatterystaple"
+        }, function(error, userData) {
+          if (error) {
+            console.log("Error creating user:", error);
+          } else {
+            console.log("Successfully created user account with uid:", userData.uid);
+          }
+        });
+
+        /*----------------------------------------------------------------------------------------------*/
+        ref.authWithPassword({
+          email    : "bobtony@firebase.com",
+          password : "correcthorsebatterystaple"
+        }, function(error, authData) {
+          if (error) {
+            console.log("Login Failed!", error);
+          } else {
+            console.log("Authenticated successfully with payload:", authData);
+          }
+        });
+
+        /*----------------------------------------------------------------------------------------------*/
+
+        
         // Keep a mapping of firebase locations to HTML elements, so we can move / remove elements as necessary.
         var tr_References = {};
 
