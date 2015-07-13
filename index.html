@@ -140,20 +140,11 @@
         });
 
         /*----------------------------------------------------------------------------------------------*/
-        scoreListRef.authWithPassword({
-          email    : "bobtony@firebase.com",
-          password : "correcthorsebatterystaple"
-        }, function(error, authData) {
-          if (error) {
-            console.log("Login Failed!", error);
-          } else {
-            console.log("Authenticated successfully with payload:", authData);
-          }
-        });
+        
 
         /*----------------------------------------------------------------------------------------------*/
 
-        
+
         // Keep a mapping of firebase locations to HTML elements, so we can move / remove elements as necessary.
         var tr_References = {};
 
@@ -222,6 +213,19 @@
 
             // Use setWithPriority to put the name / score in Firebase, and set the priority to be the score.
             userScoreRef.setWithPriority({ name:name, info:info, score:newScore }, newScore);
+          }
+        });
+
+
+
+        scoreListRef.authWithPassword({
+          email    : "bobtony@firebase.com",
+          password : "correcthorsebatterystaple"
+        }, function(error, authData) {
+          if (error) {
+            console.log("Login Failed!", error);
+          } else {
+            console.log("Authenticated successfully with payload:", authData);
           }
         });
       </script>
