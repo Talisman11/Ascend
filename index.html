@@ -128,7 +128,7 @@
         var scoreListRef = new Firebase('https://vivid-torch-8260.firebaseio.com/'); //the database url
 
         /*----------------------------------------------------------------------------------------------*/
-        ref.createUser({
+        scoreListRef.createUser({
         email    : "bobtony@firebase.com",
         password : "correcthorsebatterystaple"
         }, function(error, userData) {
@@ -140,7 +140,7 @@
         });
 
         /*----------------------------------------------------------------------------------------------*/
-        ref.authWithPassword({
+        scoreListRef.authWithPassword({
           email    : "bobtony@firebase.com",
           password : "correcthorsebatterystaple"
         }, function(error, authData) {
