@@ -145,9 +145,8 @@
               console.log("Error creating user:", error);
             } else {
               console.log("Successfully created user account with uid:", userData.uid);
-              var modal = document.getElementById("regModal");
-
-              modal.close();
+              
+              $('#regModal').dialog('close');
             }
           });          
         }
