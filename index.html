@@ -135,8 +135,8 @@
           var ref = new Firebase('https://vivid-torch-8260.firebaseio.com/');
 
           ref.createUser({        
-            email    : form.em,        
-            password : form.pw        
+            email    : form.em.value,        
+            password : form.pw.value        
           }, 
 
           function(error, userData){
