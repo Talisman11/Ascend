@@ -74,7 +74,7 @@
                     Email:      <br>  <input type="email" name="em" value="">   <br>
                     Password:   <br>  <input type="password" name="pw" value="">   <br>
 
-                    <input type="button" value="Log in" onClick="acceptUser(this.form)">
+                    <input type="submit" value="Log in" onClick="acceptUser(this.form)">
                </form>
               </div>
             </div>
@@ -134,6 +134,7 @@
 
           var ref = new Firebase('https://vivid-torch-8260.firebaseio.com/');
 
+          console.log("generateUser function received: " + form.em.value + " and " + form.pw.value);
           ref.createUser({        
             email    : form.em.value,        
             password : form.pw.value        
@@ -144,6 +145,8 @@
               console.log("Error creating user:", error);
             } else {
               console.log("Successfully created user account with uid:", userData.uid);
+              var modal = document.getElementByID("regModal");
+              modal.close();
             }
           });          
         }
@@ -151,7 +154,7 @@
         function acceptUser(form) {
 
           var ref = new Firebase('https://vivid-torch-8260.firebaseio.com/');
-          console.log("acceptUser function received: " + form.em + " and " + form.pw);
+          console.log("acceptUser function received: " + form.em.value + " and " + form.pw.value);
           ref.authWithPassword({
             email    : form.em.value,
             password : form.pw.value
