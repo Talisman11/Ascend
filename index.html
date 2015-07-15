@@ -47,13 +47,16 @@
               <div>
                 <a href="#close" title="Close" class="close">X</a>
                 <h2>Create Account</h2>
-                <form name="registerForm" method="POST">
+                <form name="registerForm">
                   <fieldset>
                   <legend>User information:</legend>
-                    First name: <br>  <input class="example-leaderboard-name" type="text" id="nameInput" placeholder="First name">   <br>
-                    Last name:  <br>  <input class="example-leaderboard-info" type="text" id="infoInput" placeholder="Enter extra data">  <br>
-                    Score:      <br>  <input class="example-leaderboard-score" type="text" id="scoreInput" placeholder="Record your score..."> <br>
-                    <input type="submit" value="Submit">
+
+                    First name: <br>  <input type="text" id="fn" placeholder="First name">   <br>
+                    Last name:  <br>  <input type="text" id="ln" placeholder="Enter extra data">  <br>
+                    Email:      <br>  <input type="email" id="em" placeholder="Enter email"> <br>
+                    Password:   <br>  <input type="text" id="pw" placeholder="Create a password"> <br>
+
+                    <input type="submit" value="Submit" onClick="generateUser(this.form)">
                   </fieldset>
                </form>
               </div>
@@ -66,11 +69,13 @@
               <div>
                 <a href="#close" title="Close" class="close">X</a>
                 <h2>Create Account</h2>
-                <form name="loginForm" method="POST">
+                <form name="loginForm">
                   <fieldset>
-                    Email:      <br>  <input type="text" name="email" value="">   <br>
-                    Password:   <br>  <input type="text" name="password" value="">   <br>
-                    <input type="submit" value="Log in">
+
+                    Email:      <br>  <input type="email" name="em" value="">   <br>
+                    Password:   <br>  <input type="password" name="pw" value="">   <br>
+
+                    <input type="submit" value="Log in" onClick="acceptUser(this.form)">
                   </fieldset>
                </form>
               </div>
@@ -109,7 +114,7 @@
         </div>
       </div>
 
-      <div class="example-base example-leaderboard l-demo-container">
+      <div class="base leaderboard l-demo-container">
         <table id="leaderboardTable">
           <tr>
             <th>Player</th>
@@ -118,31 +123,48 @@
           </tr>
         </table>
         <div>
-          <input class="example-leaderboard-name" type="text" id="nameInput" placeholder="Enter a name">
-          <input class="example-leaderboard-info" type="text" id="infoInput" placeholder="Enter extra data">
-          <input class="example-leaderboard-score" type="text" id="scoreInput" placeholder="Record your score...">
+          <input class="name" type="text" id="nameInput" placeholder="Enter a name">
+          <input class="info" type="text" id="infoInput" placeholder="Enter extra data">
+          <input class="score" type="text" id="scoreInput" placeholder="Record your score...">
         </div>
       </div>
       <script>
         // Create our Firebase reference
         var scoreListRef = new Firebase('https://vivid-torch-8260.firebaseio.com/'); //the database url
 
-        /*----------------------------------------------------------------------------------------------*/
-        scoreListRef.createUser({
-        email    : "bobtony@firebase.com",
-        password : "correcthorsebatterystaple"
-        }, function(error, userData) {
-          if (error) {
-            console.log("Error creating user:", error);
-          } else {
-            console.log("Successfully created user account with uid:", userData.uid);
-          }
-        });
+        function generateUser(form) {
 
-        /*----------------------------------------------------------------------------------------------*/
-        
+          var ref = new Firebase('https://vivid-torch-8260.firebaseio.com/');
 
-        /*----------------------------------------------------------------------------------------------*/
+          ref.createUser({        
+            email    : form.em,        
+            password : form.pw        
+          }, 
+
+          function(error, userData){
+            if (error) {
+              console.log("Error creating user:", error);
+            } else {
+              console.log("Successfully created user account with uid:", userData.uid);
+            }
+          });          
+        }
+
+        function acceptUser(form) {
+
+          var ref = new Firebase('https://vivid-torch-8260.firebaseio.com/');
+
+          ref.authWithPassword({
+            email    : form.em,
+            password : form.pw
+          }, function(error, authData) {
+            if (error) {
+              console.log("Login Failed!", error);
+            } else {
+              console.log("Authenticated successfully with payload:", authData);
+            }
+          });
+        }
 
 
         // Keep a mapping of firebase locations to HTML elements, so we can move / remove elements as necessary.
@@ -216,31 +238,10 @@
           }
         });
 
-
-
-        scoreListRef.authWithPassword({
-          email    : "bobtony@firebase.com",
-          password : "correcthorsebatterystaple"
-        }, function(error, authData) {
-          if (error) {
-            console.log("Login Failed!", error);
-          } else {
-            console.log("Authenticated successfully with payload:", authData);
-          }
-        });
       </script>
 
       <footer>
-        <!--
-        <ul>
-          <li><a href="https://github.com/unFearing/Ascend/zipball/master">Download <strong>ZIP File</strong></a></li>
-          <li><a href="https://github.com/unFearing/Ascend/tarball/master">Download <strong>TAR Ball</strong></a></li>
-          <li><a href="https://github.com/unFearing/Ascend">View On <strong>GitHub</strong></a></li>
-        </ul>
-        -->
         <p>This project is maintained by <a href="https://github.com/unFearing">unFearing</a></p>
-        <p class="view"><a href="https://github.com/unFearing/Ascend">View the Project on GitHub <small>unFearing/Ascend</small></a></p>
-        <p><small>Hosted on GitHub Pages &mdash; Theme by <a href="https://github.com/orderedlist">orderedlist</a></small></p>
       </footer>
     </div>
 
