@@ -153,8 +153,8 @@
           var ref = new Firebase('https://vivid-torch-8260.firebaseio.com/');
           console.log("acceptUser function received: " + form.em + " and " + form.pw);
           ref.authWithPassword({
-            email    : form.fieldset.em,
-            password : form.fieldset.pw
+            email    : form.em.value,
+            password : form.pw.value
           }, function(error, authData) {
             if (error) {
               console.log("Login Failed!", error);
