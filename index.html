@@ -68,7 +68,7 @@
             <div id="logModal" class="modalDialog">
               <div>
                 <a href="#close" title="Close" class="close">X</a>
-                <h2>Create Account</h2>
+                <h2>Sign in</h2>
                 <form name="loginForm">
                   <fieldset>
 
@@ -153,7 +153,7 @@
         function acceptUser(form) {
 
           var ref = new Firebase('https://vivid-torch-8260.firebaseio.com/');
-
+          console.log("acceptUser function received: " + form.em + " and " + form.pw);
           ref.authWithPassword({
             email    : form.em,
             password : form.pw
