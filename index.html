@@ -42,10 +42,10 @@
       <div class="main">
         <ul>
           <li>
-            <a href="regModal">Register</a>
+            <a href="#regModal">Register</a>
             <div id="regModal" class="modalDialog">
               <div>
-                <a href="close" title="Close" class="close">X</a>
+                <a href="#close" title="Close" class="close">X</a>
                 <h2>Create Account</h2>
                 <form name="registerForm">
                   <fieldset>
@@ -64,10 +64,10 @@
           </li>
 
           <li>
-            <a href="logModal">Log In</a>
+            <a href="#logModal">Log In</a>
             <div id="logModal" class="modalDialog">
               <div>
-                <a href="close" title="Close" class="close">X</a>
+                <a href="#close" title="Close" class="close">X</a>
                 <h2>Create Account</h2>
                 <form name="loginForm">
                   <fieldset>
@@ -147,7 +147,7 @@
               console.log("Error creating user:", error);
             } else {
               console.log("Successfully created user account with uid:", userData.uid);
-              $('regModal').remove();
+              $('?#regModal').remove();
             }
           });          
         }
@@ -165,7 +165,7 @@
             } else {
               console.log("Authenticated successfully with payload:", authData);
               
-              $('logModal').remove();
+              $('?#logModal').remove();
             }
           });
         }
