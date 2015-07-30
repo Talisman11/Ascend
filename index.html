@@ -68,7 +68,7 @@
             <div id="logModal" class="modalDialog">
               <div>
                 <a href="#close" title="Close" class="close">X</a>
-                <h2>Create Account</h2>
+                <h2>Sign in</h2>
                 <form name="loginForm">
                   <fieldset>
 
@@ -133,14 +133,11 @@
         var scoreListRef = new Firebase('https://vivid-torch-8260.firebaseio.com/'); //the database url
 
         function generateUser(form) {
-
           var ref = new Firebase('https://vivid-torch-8260.firebaseio.com/');
-
           ref.createUser({        
             email    : form.em,        
             password : form.pw        
           }, 
-
           function(error, userData){
             if (error) {
               console.log("Error creating user:", error);
@@ -151,9 +148,7 @@
         }
 
         function acceptUser(form) {
-
           var ref = new Firebase('https://vivid-torch-8260.firebaseio.com/');
-
           ref.authWithPassword({
             email    : form.em,
             password : form.pw
@@ -166,24 +161,18 @@
           });
         }
 
-
-        // Keep a mapping of firebase locations to HTML elements, so we can move / remove elements as necessary.
-        var tr_References = {};
-
-        // Helper function that takes a new score snapshot and adds an appropriate row to our leaderboard table.
-        function addScore(scoreSnapshot, prevScoreName) {
+        var tr_References = {}; // Keep a mapping of firebase locations to HTML elements, so we can move / remove elements as necessary.
+        
+        function addScore(scoreSnapshot, prevScoreName) { // Helper function that takes a new score snapshot and adds an appropriate row to our leaderboard table.
           var newScoreRow = $("<tr/>");
 
           newScoreRow.append($("<td/>").append($("<em/>").text(scoreSnapshot.val().name))); //random html highlighting
-
           newScoreRow.append($("<td/>").append($("<em/>").text(scoreSnapshot.val().info))); //random html highlighting
           newScoreRow.append($("<td/>").text(scoreSnapshot.val().score));
-          // Store a reference to the table row so we can get it again later.
-          tr_References[scoreSnapshot.key()] = newScoreRow;
-
-          // Insert the new score in the appropriate place in the table.
+          tr_References[scoreSnapshot.key()] = newScoreRow; // Store a reference to the table row so we can get it again later.
+          
           if (prevScoreName === null) {
-            $("#leaderboardTable").append(newScoreRow);
+            $("#leaderboardTable").append(newScoreRow); // Insert the new score in the appropriate place in the table.
           }
           else {
             var lowerScoreRow = tr_References[prevScoreName];
@@ -191,37 +180,31 @@
           }
         }
 
-        // Helper function to handle a score object being removed; just removes the corresponding table row.
-        function removeScore(scoreSnapshot) {
+        function removeScore(scoreSnapshot) { // Helper function to handle a score object being removed; just removes the corresponding table row.
           var removedScoreRow = tr_References[scoreSnapshot.key()];
           removedScoreRow.remove();
           delete tr_References[scoreSnapshot.key()];
         }
-
-        // Create a view to only receive callbacks for the last LEADERBOARD_SIZE scores
-        var LEADERBOARD_SIZE = 100; //the maximum size
+        
+        var LEADERBOARD_SIZE = 100; // Create a view to only receive callbacks for the last LEADERBOARD_SIZE scores
         var scoreListView = scoreListRef.limitToLast(LEADERBOARD_SIZE);
-
-        // Add a callback to handle when a new score is added.
-        scoreListView.on('child_added', function (newScoreSnapshot, prevScoreName) {
+        
+        scoreListView.on('child_added', function (newScoreSnapshot, prevScoreName) { // Add a callback to handle when a new score is added.
           addScore(newScoreSnapshot, prevScoreName);
         });
-
-        // Add a callback to handle when a score is removed
-        scoreListView.on('child_removed', function (oldScoreSnapshot) {
+        
+        scoreListView.on('child_removed', function (oldScoreSnapshot) { // Add a callback to handle when a score is removed
           removeScore(oldScoreSnapshot);
         });
-
-        // Add a callback to handle when a score changes or moves positions.
-        var updateTable = function (scoreSnapshot, prevScoreName) {
+        
+        var updateTable = function (scoreSnapshot, prevScoreName) { // Add a callback to handle when a score changes or moves positions.
           removeScore(scoreSnapshot);
           addScore(scoreSnapshot, prevScoreName);
         };
         scoreListView.on('child_moved', updateTable);
         scoreListView.on('child_changed', updateTable);
-
-        // When the user presses enter on scoreInput, add the score, and update the highest score.
-        $("#scoreInput").keypress(function (e) {
+        
+        $("#scoreInput").keypress(function (e) { // When the user presses enter on scoreInput, add the score, and update the highest score.
           if (e.keyCode == 13) {
             var newScore = $("#scoreInput").val();
             var info = $("#infoInput").val();
@@ -232,12 +215,9 @@
               return;
 
             var userScoreRef = scoreListRef.child(name);
-
-            // Use setWithPriority to put the name / score in Firebase, and set the priority to be the score.
-            userScoreRef.setWithPriority({ name:name, info:info, score:newScore }, newScore);
+            userScoreRef.setWithPriority({ name:name, info:info, score:newScore }, newScore); // Use setWithPriority to put the name / score in Firebase, and set the priority to be the score.
           }
         });
-
       </script>
 
       <footer>
