@@ -113,8 +113,8 @@
           </table>
         </div>
       </div>
-
-      <div class="base leaderboard l-demo-container">
+      <!-- 
+      <div class="leaderboard">
         <table id="leaderboardTable">
           <tr>
             <th>Player</th>
@@ -128,6 +128,7 @@
           <input class="score" type="text" id="scoreInput" placeholder="Record your score...">
         </div>
       </div>
+      -->
       <script>
         // Create our Firebase reference
         var scoreListRef = new Firebase('https://vivid-torch-8260.firebaseio.com/'); //the database url
@@ -146,7 +147,7 @@
               console.log("Error creating user:", error);
             } else {
               console.log("Successfully created user account with uid:", userData.uid);
-              $('#regModal').remove();
+              $('regModal').remove();
             }
           });          
         }
@@ -164,7 +165,7 @@
             } else {
               console.log("Authenticated successfully with payload:", authData);
               
-              $('#logModal').remove();
+              $('logModal').remove();
             }
           });
         }
@@ -244,7 +245,7 @@
       </script>
 
       <footer>
-        <p>This project is maintained by <a href="https://github.com/unFearing">unFearing</a></p>
+        <p>This project is maintained by <a href="https://github.com/unFearing">Brandon Chen</a></p>
       </footer>
     </div>
 
