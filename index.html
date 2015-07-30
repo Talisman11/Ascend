@@ -137,8 +137,8 @@
           var ref = new Firebase('https://vivid-torch-8260.firebaseio.com/');
 
           ref.createUser({        
-            email    : form.em,        
-            password : form.pw        
+            email    : form.em.value,        
+            password : form.pw.value        
           }, 
 
           function(error, userData){
@@ -156,8 +156,8 @@
           var ref = new Firebase('https://vivid-torch-8260.firebaseio.com/');
 
           ref.authWithPassword({
-            email    : form.em,
-            password : form.pw
+            email    : form.em.value,
+            password : form.pw.value
           }, function(error, authData) {
             if (error) {
               console.log("Login Failed!", error);
