@@ -94,13 +94,13 @@ th {
 img {
   max-width:100%;
 }
-
+/*
 footer {
-  /* width:270px; */
+  width:270px; 
   float:left;
   position:fixed;
 }
-
+*/
 footer ul {
   list-style:none;
   height:40px;
@@ -177,7 +177,7 @@ hr {
 }
 
 footer {
-  width:270px;
+  width:350px;
   float:left;
   position:fixed;
   bottom:50px;

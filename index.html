@@ -60,10 +60,10 @@
                     <p id="pwstatus">Password status:</p>
                     <script>
                       if (this.pw.value === this.pwr.value){
-                        this.pwstatus.value = "Password status: Passwords match";
+                        this.pwstatus.append("Password status: Passwords match");
                       }
                       else{
-                        this.pwstatus.value = "Password status: Passwords do not match";
+                        this.pwstatus.append("Password status: Passwords do not match");
                       }
                     </script>
 
@@ -158,7 +158,7 @@
               console.log("Error creating user:", error);
             } else {
               console.log("Successfully created user account with uid:", userData.uid);
-              $('?#regModal').remove();
+              $('#regModal').remove();
             }
           });          
         }
@@ -176,7 +176,7 @@
             } else {
               console.log("Authenticated successfully with payload:", authData);
               
-              $('?#logModal').remove();
+              $('#logModal').remove();
             }
           });
         }
