@@ -51,10 +51,21 @@
                   <fieldset>
                   <legend>User information:</legend>
 
-                    First name: <br>  <input type="text" id="fn" placeholder="First name">   <br>
-                    Last name:  <br>  <input type="text" id="ln" placeholder="Enter extra data">  <br>
-                    Email:      <br>  <input type="email" id="em" placeholder="Enter email"> <br>
-                    Password:   <br>  <input type="text" id="pw" placeholder="Create a password"> <br>
+                    <br>  <input type="text" id="fn" placeholder="First name">   <br>
+                    <br>  <input type="text" id="ln" placeholder="Last name">  <br>
+                    <br>  <input type="number" id="p" placeholder="Phone (no symbols)"> <br>
+                    <br>  <input type="email" id="em" placeholder="Email"> <br>
+                    <br>  <input type="password" id="pw" placeholder="Password"> <br>
+                    <br>  <input type="password" id="pwr"placeholder="Retype Password"> <br>
+                    <p id="pwstatus">Password status:</p>
+                    <script>
+                      if (this.pw.value === this.pwr.value){
+                        this.pwstatus.value = "Password status: Passwords match";
+                      }
+                      else{
+                        this.pwstatus.value = "Password status: Passwords do not match";
+                      }
+                    </script>
 
                     <input type="submit" value="Submit" onClick="generateUser(this.form)">
                   </fieldset>
@@ -113,7 +124,7 @@
           </table>
         </div>
       </div>
-      <!-- 
+
       <div class="leaderboard">
         <table id="leaderboardTable">
           <tr>
@@ -128,7 +139,7 @@
           <input class="score" type="text" id="scoreInput" placeholder="Record your score...">
         </div>
       </div>
-      -->
+
       <script>
         // Create our Firebase reference
         var scoreListRef = new Firebase('https://vivid-torch-8260.firebaseio.com/'); //the database url
@@ -238,7 +249,7 @@
             var userScoreRef = scoreListRef.child(name);
 
             // Use setWithPriority to put the name / score in Firebase, and set the priority to be the score.
-            userScoreRef.setWithPriority({ name:name, info:info, score:newScore }, newScore);
+            userScoreRef.setWithPriority({ name:name, info:info, score:newScore }, name);
           }
         });
 
