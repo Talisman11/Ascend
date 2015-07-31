@@ -32,10 +32,13 @@
       </header>
 
       <section>
+        <!--
         <h3>
           <a id="ascend-member-information" class="anchor" href="#ascend-member-information" aria-hidden="true"><span class="octicon octicon-link"></span></a>
           Member Information
         </h3>
+        -->
+        <h3>Member Information</h3>
       </section>
 
       
@@ -125,19 +128,23 @@
         </div>
       </div>
 
-      <div class="leaderboard">
+      <div id="table" class="leaderboard">
         <table id="leaderboardTable">
           <tr>
-            <th>Player</th>
-            <th>Info</th>
-            <th>Score</th>
+            <th>Last Name</th>
+            <th>First Name</th>
+            <th>Phone Number</th>
+            <th>Email</th>
+            <th>Attendance</th>
           </tr>
         </table>
+        <!-- POSSIBLY USE THIS CODE FOR EMBEDDED LOGIN AND SIGN UP ????
         <div>
           <input class="name" type="text" id="nameInput" placeholder="Enter a name">
           <input class="info" type="text" id="infoInput" placeholder="Enter extra data">
           <input class="score" type="text" id="scoreInput" placeholder="Record your score...">
         </div>
+        -->
       </div>
 
       <script>
@@ -242,7 +249,7 @@
         scoreListView.on('child_moved', updateTable);
         scoreListView.on('child_changed', updateTable);
 
-        // When the user presses enter on scoreInput, add the score, and update the highest score.
+        /* When the user presses enter on scoreInput, add the score, and update the highest score.
         $("#scoreInput").keypress(function (e) {
           if (e.keyCode == 13) {
             var newScore = $("#scoreInput").val();
@@ -259,6 +266,7 @@
             userScoreRef.setWithPriority({ name:name, info:info, score:newScore }, name);
           }
         });
+        */
 
       </script>
 
