@@ -214,7 +214,7 @@
         }
 
         // Helper function to handle a score object being removed; just removes the corresponding table row.
-        function removeScore(userDataToRemove) {
+        function removeUser(userDataToRemove) {
           var removedScoreRow = tr_References[userDataToRemove.key()];
           removedScoreRow.remove();
           delete tr_References[userDataToRemove.key()]; //good ol C++ data management
@@ -226,18 +226,18 @@
 
         // Add a callback to handle when a new score is added.
         scoreListView.on('child_added', function (newScoreSnapshot, prevScoreName) {
-          addScore(newScoreSnapshot, prevScoreName);
+          addUser(newScoreSnapshot, prevScoreName);
         });
 
         // Add a callback to handle when a score is removed
         scoreListView.on('child_removed', function (oldScoreSnapshot) {
-          removeScore(oldScoreSnapshot);
+          removeUser(oldScoreSnapshot);
         });
 
         // Add a callback to handle when a score changes or moves positions.
         var updateTable = function (scoreSnapshot, prevScoreName) {
-          removeScore(scoreSnapshot);
-          addScore(scoreSnapshot, prevScoreName);
+          removeUser(scoreSnapshot);
+          addUser(scoreSnapshot, prevScoreName);
         };
         scoreListView.on('child_moved', updateTable);
         scoreListView.on('child_changed', updateTable);
