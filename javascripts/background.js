@@ -11,7 +11,7 @@ $('.table-add').click(function () {
 
   //alert("hello");
 });
-
+*/
 
 $('.table-remove').click(function () {
   $(this).parents('tr').detach();
