@@ -193,10 +193,10 @@
           });
         }
 
-        function updateUser(userData){
+        function updateUser(){
 
           console.log("updateUser engaged");
-          var userRef = 'https://vivid-torch-8260.firebaseio.com/' + userData.val().lastName + '_' + userData.val().firstName; //the URL
+          //var userRef = 'https://vivid-torch-8260.firebaseio.com/' + userData.val().lastName + '_' + userData.val().firstName; //the URL
           var userRef1 = 'https://vivid-torch-8260.firebaseio.com/s_brandon'; //the URL
           var newvalue = 's_brandon'.val().attendance + 1;
           userRef1.update({ attendance: newvalue }, onComplete);
