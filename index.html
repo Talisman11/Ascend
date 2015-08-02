@@ -123,8 +123,8 @@
       </div>
 
       <div id="table" class="table-editable">
-        <span class="table-add glyphicon glyphicon-plus"></span>
-        <table id="leaderboardTable" class="table">
+        <span class="table-add glyphicon glyphicon-plus" onclick="updateUser()"></span>
+        <table id="datatable" class="table">
           <tr>
             <th>Last Name</th>
             <th>First Name</th>
@@ -145,6 +145,13 @@
       <script>
         var ref = new Firebase('https://vivid-torch-8260.firebaseio.com/'); //the database url
 
+        var onComplete = function(error) {
+          if (error) {
+            console.log('Synchronization failed');
+          } else {
+            console.log('Synchronization succeeded');
+          }
+        };
         function generateUser(form) {
           ref.createUser({        
             email    : form.em.value,        
@@ -165,7 +172,7 @@
               var _p = form.pw.value;
               var _a = 0; //default attendance of 0
 
-              var user = ref.child(_l + ', ' + _f); //name stored in database
+              var user = ref.child(_l + '_' + _f); //name stored in database
 
               user.setWithPriority({ firstName:_f, lastName:_l, phoneNumber:_n, email:_e, password:_p, attendance:_a}, _l); //for table sorting
             }
@@ -186,7 +193,13 @@
           });
         }
 
+        function updateUser(userData){
 
+          console.log("updateUser engaged");
+          var userRef = 'https://vivid-torch-8260.firebaseio.com/' + userData.val().lastName + '_' + userData.val().firstName; //the URL
+          var newvalue = userData.val().attendance + 1;
+          userRef.update({ attendance: newvalue }, onComplete);
+        }
         // Keep a mapping of firebase locations to HTML elements, so we can move / remove elements as necessary.
         var tr_References = {};
 
@@ -205,7 +218,7 @@
 
           // Insert the new score in the appropriate place in the table.
           if (prevScoreName === null) {
-            $("#leaderboardTable").append(member);
+            $("#datatable").append(member);
           }
           else {
             var lowerScoreRow = tr_References[prevScoreName];
