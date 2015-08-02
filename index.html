@@ -198,7 +198,7 @@
           console.log("updateUser engaged");
           //var userRef = 'https://vivid-torch-8260.firebaseio.com/' + userData.val().lastName + '_' + userData.val().firstName; //the URL
           var userRef1 = 'https://vivid-torch-8260.firebaseio.com/s_brandon'; //the URL
-          userRef1.update({ attendance: ++attendance }, onComplete);
+          userRef1.update({ attendance: ++userRef1.val().attendance }, onComplete);
         }
         // Keep a mapping of firebase locations to HTML elements, so we can move / remove elements as necessary.
         var tr_References = {};
