@@ -218,12 +218,16 @@
             snapshot.forEach(function(childSnapshot) {
               var key = childSnapshot.key(); //username
               var userRef = new Firebase(ref + '/' + key); //url + username
+              var eventRef = userRef.child("zevents");
+              var eventName = form.theDate.value + form.eventName.value;
+              eventRef.push({eventName: false})
+
 
               console.log(userRef);
               console.log(childSnapshot.val());
               console.log(childSnapshot.val().zevents[0]);
-              childSnapshot.val().zevents.push("text");
-
+              console.log(childSnapshot.val().zevents[1]);
+              //childSnapshot.val().zevents.push("text");
               userRef.update({attendance: childSnapshot.val().zevents.length});
 
 
