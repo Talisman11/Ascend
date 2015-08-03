@@ -220,6 +220,7 @@
               var userRef = new Firebase(ref + '/' + key); //url + username
               var eventRef = userRef.child("zevents");
               var eventName = form.theDate.value + form.eventName.value;
+              console.log(eventName);
               console.log(window['eventName']);
               eventRef.push({eventName: false})
 
