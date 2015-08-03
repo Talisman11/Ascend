@@ -185,7 +185,8 @@
 
               var user = ref.child(_l + '_' + _f); //name stored in database
 
-              user.setWithPriority({ firstName:_f, lastName:_l, phoneNumber:_n, email:_e, password:_p, attendance: 0, zevents: [] }, _l); //for table sorting
+              user.setWithPriority({ firstName:_f, lastName:_l, phoneNumber:_n, email:_e, password:_p, attendance: 0, 
+                zevents: [{eventName: 'firstMeeting', attended: true}] }, _l); //for table sorting
             }
           });          
         }
@@ -224,7 +225,7 @@
               eventRef.push({event: eventName, attended: false});
 
              console.log(childSnapshot.val().zevents.length); // data is loaded here
-             userRef.update({attendance: childSnapshot.val().zevents.length})
+             userRef.update({attendance: ++attendance})
 
               
 
