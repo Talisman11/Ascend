@@ -64,7 +64,7 @@
                         this.pwstatus.innerHTML = "Password status: Passwords do not match";
                       }
                     </script>
-                    <button type="button" value="Submit" onClick="generateUser(this.form)">
+                    <button type="button" onClick="generateUser(this.form)">Submit</button>
                   </fieldset>
                </form>
               </div>
@@ -83,7 +83,7 @@
                     Email:      <br>  <input type="email" name="em" value="">   <br>
                     Password:   <br>  <input type="password" name="pw" value="">   <br>
 
-                    <button type="button" value="Log in" onClick="acceptUser(this.form)">
+                    <button type="button" onClick="acceptUser(this.form)">Log in</button>
                   </fieldset>
                </form>
               </div>
@@ -94,7 +94,7 @@
                 <fieldset>
                   <input type="text" name="eventName" placeholder="Event Name"> 
                   <input type="date" name="theDate">
-                  <button type="button" value="Create" onClick="newEvent(this.form)">
+                  <button type="button" onClick="newEvent(this.form)">Create</button>
                 </fieldset>
             </form>
           </li>
@@ -217,7 +217,7 @@
 
             snapshot.forEach(function(childSnapshot) {
               var key = childSnapshot.key(); //username
-              var userRef = ref + key ; //url + username
+              var userRef = ref + '/' + key ; //url + username
               console.log(userRef);
 
               userRef.update({zevents: childSnapshot.val().zevents.push(form.theDate.value + form.eventName.value), 
