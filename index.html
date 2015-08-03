@@ -223,7 +223,7 @@
               console.log(childSnapshot.val().zevents[0]);
               childSnapshot.val().zevents.push("text");
 
-              userRef.update({attendance: childSnapshot.val().zevents.length})
+              userRef.update({attendance: childSnapshot.val().zevents.length});
               //var childData = childSnapshot.val(); //username contents
             });
           });
