@@ -223,11 +223,8 @@
 
               eventRef.push({event: eventName, attended: false});
 
-              //userRef.update({attendance: childSnapshot.val().zevents.length});
-              eventRef.$loaded().then(function(zevents) {
-                 console.log(zevents.length); // data is loaded here
-                 userRef.update({attendance: childSnapshot.val().zevents.length})
-              });
+             console.log(zevents.length); // data is loaded here
+             userRef.update({attendance: 3})
 
               
 
