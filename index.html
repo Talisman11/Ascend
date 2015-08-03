@@ -212,14 +212,14 @@
         }
         */
         function newEvent(form){ //for all users
-
+          
+              var this.eventName = form.theDate.value + form.eventName.value;
           ref.once("value", function(snapshot) {
 
             snapshot.forEach(function(childSnapshot) {
               var key = childSnapshot.key(); //username
               var userRef = new Firebase(ref + '/' + key); //url + username
               var eventRef = userRef.child("zevents");
-              var this.eventName = form.theDate.value + form.eventName.value;
               var actual = this['eventName'];
               console.log(actual);
               eventRef.push({eventName: false})
