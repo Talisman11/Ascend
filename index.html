@@ -89,6 +89,15 @@
               </div>
             </div>
           </li>
+          <li>
+            <form name="event">
+                <fieldset>
+                  <input type="text" name="eventName" placeholder="Event Name"> 
+                  <input type="date" name="theDate">
+                  <input type="submit" value="Create" onClick="newEvent(this.form)">
+                </fieldset>
+            </form>
+          </li>
         </ul>
         <!--
         <div id="table" class="table-editable">
@@ -123,7 +132,6 @@
       </div>
 
       <div id="table" class="table-editable">
-        <span class="table-add glyphicon glyphicon-plus" onclick="newEvent()"></span>
         <table id="datatable" class="table">
           <tr>
             <th>Last Name</th>
@@ -174,11 +182,12 @@
               var _n = form.p.value; //number
               var _e = form.em.value;
               var _p = form.pw.value;
-              var _a = 0; //default attendance of 0
+              var _ev = [];
+              var _a = events.length;
 
               var user = ref.child(_l + '_' + _f); //name stored in database
 
-              user.setWithPriority({ firstName:_f, lastName:_l, phoneNumber:_n, email:_e, password:_p, attendance:_a}, _l); //for table sorting
+              user.setWithPriority({ firstName:_f, lastName:_l, phoneNumber:_n, email:_e, password:_p, attendance:_a zevents: _ev}, _l); //for table sorting
             }
           });          
         }
@@ -204,11 +213,24 @@
           userRef1.update({ attendance: ++userRef1.val().attendance }, onComplete);
         }
         */
-        function newEvent(){
+        function newEvent(form){ //for all users
+
+          ref.once("value", function(snapshot) {
+
+            snapshot.forEach(function(childSnapshot) {
+              var key = childSnapshot.key(); //username
+              var userRef = ref + key ; //url + username
+
+              userRef.update({zevents: zevents.push(form.theDate + form.eventName.value), attendance: zevents.length})
+              var childData = childSnapshot.val(); //username contents
+            });
+          });
+          /*
           var row = $("<tr/>");
           row.append($("<th/>").append("testing"));
-          $("#datatable2").append(row);
-        }
+          $("#datatable").append(row);
+          */
+        };
         // Keep a mapping of firebase locations to HTML elements, so we can move / remove elements as necessary.
         var tr_References = {};
 
