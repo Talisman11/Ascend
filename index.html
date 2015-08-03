@@ -123,7 +123,7 @@
       </div>
 
       <div id="table" class="table-editable">
-        <span class="table-add glyphicon glyphicon-plus" onclick="updateUser()"></span>
+        <span class="table-add glyphicon glyphicon-plus" onclick="newEvent()"></span>
         <table id="datatable" class="table">
           <tr>
             <th>Last Name</th>
@@ -140,6 +140,10 @@
           <input class="score" type="text" id="scoreInput" placeholder="Record your score...">
         </div>
         -->
+        <table id="datatable2" class="table">
+            <tr>
+            </tr>
+        </table>
       </div>
 
       <script>
@@ -151,7 +155,7 @@
           } else {
             console.log('Synchronization succeeded');
           }
-        };
+        }
         function generateUser(form) {
           ref.createUser({        
             email    : form.em.value,        
@@ -200,12 +204,16 @@
           userRef1.update({ attendance: ++userRef1.val().attendance }, onComplete);
         }
         */
-
+        function newEvent(){
+          var row = $("<tr/>");
+          row.append($("<th/>").append("testing");
+          $("#datatable2").append(row);
+        }
         // Keep a mapping of firebase locations to HTML elements, so we can move / remove elements as necessary.
         var tr_References = {};
 
         // Helper function that takes a new score snapshot and adds an appropriate row to our leaderboard table.
-        function addUser(userData, prevScoreName) {
+        function addUser(userData, prevName) {
           var member = $("<tr/>");
 
           member.append($("<td/>").append($("<em/>").text(userData.val().firstName))); 
@@ -218,11 +226,11 @@
           tr_References[userData.key()] = member;
 
           // Insert the new score in the appropriate place in the table.
-          if (prevScoreName === null) {
+          if (prevName === null) {
             $("#datatable").append(member);
           }
           else {
-            var lowerScoreRow = tr_References[prevScoreName];
+            var lowerScoreRow = tr_References[prevName];
             lowerScoreRow.before(member);
           }
         }
@@ -239,8 +247,8 @@
          var dataView = ref.limitToLast(DATABASE_LIMIT);
 
         // Add a callback to handle when a new score is added.
-        dataView.on('child_added', function (newScoreSnapshot, prevScoreName) {
-          addUser(newScoreSnapshot, prevScoreName);
+        dataView.on('child_added', function (newSnapshot, prevName) {
+          addUser(newSnapshot, prevName);
         });
 
         // Add a callback to handle when a score is removed
@@ -249,9 +257,9 @@
         });
 
         // Add a callback to handle when a score changes or moves positions.
-        var updateTable = function (scoreSnapshot, prevScoreName) {
-          removeUser(scoreSnapshot);
-          addUser(scoreSnapshot, prevScoreName);
+        var updateTable = function (snapshot, prevName) {
+          removeUser(snapshot);
+          addUser(snapshot, prevName);
         };
         dataView.on('child_moved', updateTable);
         dataView.on('child_changed', updateTable);
