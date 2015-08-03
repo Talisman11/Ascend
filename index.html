@@ -220,9 +220,10 @@
             snapshot.forEach(function(childSnapshot) {
               var key = childSnapshot.key(); //username
               var userRef = ref + key ; //url + username
-
-              userRef.update({zevents: zevents.push(form.theDate + form.eventName.value), attendance: zevents.length})
-              var childData = childSnapshot.val(); //username contents
+              console.log(userRef);
+              userRef.update({zevents: childSnapshot.val().zevents.push(form.theDate + form.eventName.value), 
+                              attendance: childSnapshot.val().zevents.length})
+              //var childData = childSnapshot.val(); //username contents
             });
           });
           /*
