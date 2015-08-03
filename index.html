@@ -212,7 +212,7 @@
         }
         */
         function newEvent(form){ //for all users
-          
+
               this.eventName = form.theDate.value + form.eventName.value;
           ref.once("value", function(snapshot) {
 
@@ -222,7 +222,7 @@
               var eventRef = userRef.child("zevents");
               var actual = this['eventName'];
               console.log(actual);
-              eventRef.push({eventName: false})
+              eventRef.push({actual: false})
 
 
               console.log(userRef);
