@@ -213,7 +213,7 @@
         */
         function newEvent(form){ //for all users
           
-              var this.eventName = form.theDate.value + form.eventName.value;
+              this.eventName = form.theDate.value + form.eventName.value;
           ref.once("value", function(snapshot) {
 
             snapshot.forEach(function(childSnapshot) {
