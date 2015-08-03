@@ -219,9 +219,9 @@
               var key = childSnapshot.key(); //username
               var userRef = new Firebase(ref + '/' + key); //url + username
               var eventRef = userRef.child("zevents");
-              var eventName = form.theDate.value + form.eventName.value;
-              console.log(eventName);
-              console.log(window['eventName']);
+              var this.eventName = form.theDate.value + form.eventName.value;
+              var actual = this['eventName'];
+              console.log(actual);
               eventRef.push({eventName: false})
 
 
