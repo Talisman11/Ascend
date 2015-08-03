@@ -185,7 +185,7 @@
 
               var user = ref.child(_l + '_' + _f); //name stored in database
 
-              user.setWithPriority({ firstName:_f, lastName:_l, phoneNumber:_n, email:_e, password:_p, attendance: 0, zevents: ['a'] }, _l); //for table sorting
+              user.setWithPriority({ firstName:_f, lastName:_l, phoneNumber:_n, email:_e, password:_p, attendance: 0, zevents: [] }, _l); //for table sorting
             }
           });          
         }
