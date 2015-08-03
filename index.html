@@ -222,7 +222,8 @@
               var eventRef = userRef.child("zevents");
               var actual = this['eventName'];
               console.log(actual);
-              eventRef.push({actual: false})
+              
+              eventRef.push({this['eventName']: false})
 
 
               console.log(userRef);
