@@ -64,7 +64,7 @@
                         this.pwstatus.innerHTML = "Password status: Passwords do not match";
                       }
                     </script>
-                    <input type="submit" value="Submit" onClick="generateUser(this.form)">
+                    <button type="button" value="Submit" onClick="generateUser(this.form)">
                   </fieldset>
                </form>
               </div>
@@ -83,7 +83,7 @@
                     Email:      <br>  <input type="email" name="em" value="">   <br>
                     Password:   <br>  <input type="password" name="pw" value="">   <br>
 
-                    <input type="submit" value="Log in" onClick="acceptUser(this.form)">
+                    <button type="button" value="Log in" onClick="acceptUser(this.form)">
                   </fieldset>
                </form>
               </div>
@@ -94,7 +94,7 @@
                 <fieldset>
                   <input type="text" name="eventName" placeholder="Event Name"> 
                   <input type="date" name="theDate">
-                  <input type="submit" value="Create" onClick="newEvent(this.form)">
+                  <button type="button" value="Create" onClick="newEvent(this.form)">
                 </fieldset>
             </form>
           </li>
@@ -182,12 +182,10 @@
               var _n = form.p.value; //number
               var _e = form.em.value;
               var _p = form.pw.value;
-              var _ev = [];
-              var _a = _ev.length;
 
               var user = ref.child(_l + '_' + _f); //name stored in database
 
-              user.setWithPriority({ firstName:_f, lastName:_l, phoneNumber:_n, email:_e, password:_p, attendance:_a, zevents: _ev}, _l); //for table sorting
+              user.setWithPriority({ firstName:_f, lastName:_l, phoneNumber:_n, email:_e, password:_p, attendance: 0, zevents: {} }, _l); //for table sorting
             }
           });          
         }
@@ -221,7 +219,8 @@
               var key = childSnapshot.key(); //username
               var userRef = ref + key ; //url + username
               console.log(userRef);
-              userRef.update({zevents: childSnapshot.val().zevents.push(form.theDate + form.eventName.value), 
+
+              userRef.update({zevents: childSnapshot.val().zevents.push(form.theDate.value + form.eventName.value), 
                               attendance: childSnapshot.val().zevents.length})
               //var childData = childSnapshot.val(); //username contents
             });
