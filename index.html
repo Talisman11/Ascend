@@ -236,7 +236,7 @@
 
                   console.log("key2 in arr[key]: " + arr[key][key2]); 
                   if (arr[key][key2] === false)
-                    ++childSnapshot.val().attendance;
+                    userRef.update({attendance: ++childSnapshot.val().attendance})
                 }
 
               }
