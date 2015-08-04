@@ -223,7 +223,10 @@
               var eventRef = userRef.child("zevents");
 
               eventRef.push({event: eventName, attended: false});
-              console.log(eventRef.val());
+              console.log(eventRef[0]);
+              console.log(eventRef[0].val());
+              console.log(eventRef[0].val().length);
+              
               userRef.update({attendance: ++childSnapshot.val().attendance})
 
               
