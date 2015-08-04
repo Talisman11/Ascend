@@ -232,14 +232,18 @@
               var arr = childSnapshot.val().zevents;
               for (var key in arr){ //FOR EACH EVENT OF THE USER
                 //console.log("key in arr: " + arr[key]);
+                for (var key2 in arr[key]){ //FOR EACH EVENT ATTRIBUTE OF THE EVENT
 
-                  console.log("key2 in arr[key]: " + arr[key][attended]); 
-                  console.log("attendance is: " + childSnapshot.val().attendance);
-                  if (arr[key][attended] === false)
+                  console.log("attendance before: " + childSnapshot.val().attendance);
+                  console.log("key2 in arr[key]: " + arr[key][key2]); 
+                  if (arr[key][key2] === false)
                     userRef.update({attendance: ++childSnapshot.val().attendance});
+
+                  console.log("attendance after: " + childSnapshot.val().attendance);
+                  break;
                 }
 
-              
+              }
               //console.log(childSnapshot.val().zevents[0]);
               //console.log(childSnapshot.val().zevents[1]);
 
