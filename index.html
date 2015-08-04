@@ -223,31 +223,23 @@
               var eventRef = userRef.child("zevents");
 
               eventRef.push({event: eventName, attended: false});
-              
-              //console.log(eventRef[0].attended);
-              //console.log(userRef.val().zevents[0]);
-              //console.log(userRef.val().zevents[0].attended);
 
               console.log(childSnapshot.val().zevents);
               var arr = childSnapshot.val().zevents;
+              var count = 0; //local variable 
               for (var key in arr){ //FOR EACH EVENT OF THE USER
-                //console.log("key in arr: " + arr[key]);
+
                 for (var key2 in arr[key]){ //FOR EACH EVENT ATTRIBUTE OF THE EVENT
 
-                  console.log("attendance before: " + childSnapshot.val().attendance);
                   console.log("key2 in arr[key]: " + arr[key][key2]); 
                   if (arr[key][key2] === false)
-                    userRef.update({attendance: ++childSnapshot.val().attendance});
-
-                  console.log("attendance after: " + childSnapshot.val().attendance);
+                    count++;
                   break;
                 }
 
               }
-              //console.log(childSnapshot.val().zevents[0]);
-              //console.log(childSnapshot.val().zevents[1]);
-
-              //userRef.update({attendance: ++childSnapshot.val().attendance})
+              var sum = childSnapshot.val().attendance + count; //initial + difference = final
+              userRef.update({attendance: sum});
 
               
 
