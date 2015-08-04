@@ -217,7 +217,7 @@
           var eventName = form.theDate.value + form.eventName.value;
           ref.once("value", function(snapshot) {
 
-            snapshot.forEach(function(childSnapshot) {
+            snapshot.forEach(function(childSnapshot) { // FOR EACH USER IN THE DATABASE
               var key = childSnapshot.key(); //username
               var userRef = new Firebase(ref + '/' + key); //url + username
               var eventRef = userRef.child("zevents");
@@ -230,12 +230,12 @@
 
               console.log(childSnapshot.val().zevents);
               var arr = childSnapshot.val().zevents;
-              for (var key in arr){
-                console.log("key in arr: " + arr[key]);
-                for (var key2 in arr[key]){
+              for (var key in arr){ //FOR EACH EVENT OF THE USER
+                //console.log("key in arr: " + arr[key]);
 
-                  console.log("key2 in arr[key]: " + arr[key][key2]); 
-                  if (arr[key][key2] === false)
+                  console.log("key2 in arr[key]: " + arr[key][attended]); 
+                  console.log("attendance is: " + childSnapshot.val().attendance);
+                  if (arr[key][attended] === false)
                     userRef.update({attendance: ++childSnapshot.val().attendance})
                 }
 
