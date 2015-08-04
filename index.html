@@ -224,7 +224,7 @@
 
               eventRef.push({event: eventName, attended: false});
               
-              console.log(eventRef[0].val().attended);
+              console.log(eventRef[0].attended);
 
               userRef.update({attendance: ++childSnapshot.val().attendance})
 
