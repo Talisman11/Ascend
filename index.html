@@ -229,7 +229,7 @@
               //console.log(userRef.val().zevents[0].attended);
 
               console.log(childSnapshot.val().zevents[0]);
-              console.log(childSnapshot.val().zevents[0].attended);
+              console.log(childSnapshot.val().zevents[1].attended);
 
               userRef.update({attendance: ++childSnapshot.val().attendance})
 
