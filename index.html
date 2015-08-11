@@ -261,8 +261,8 @@
         function addUser(userData, prevName) {
           var member = $("<tr/>");
 
-          member.append($("<td/>").append($("<em/>").text(userData.val().firstName))); 
           member.append($("<td/>").append($("<em/>").text(userData.val().lastName))); 
+          member.append($("<td/>").append($("<em/>").text(userData.val().firstName))); 
           member.append($("<td/>").append($("<em/>").text(userData.val().phoneNumber))); 
           member.append($("<td/>").append($("<em/>").text(userData.val().email))); 
           member.append($("<td/>").append($("<em/>").text(userData.val().attendance))); 
