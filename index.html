@@ -182,7 +182,6 @@
               var _n = form.p.value; //number
               var _e = form.em.value;
               var _p = form.pw.value;
-
               var user = ref.child(_l + '_' + _f); //name stored in database
 
               user.setWithPriority({ firstName:_f, lastName:_l, phoneNumber:_n, email:_e, password:_p, attendance: 0, 
@@ -214,38 +213,29 @@
         */
         function newEvent(form){ //for all users
 
-          var eventName = form.theDate.value + form.eventName.value;
-          ref.once("value", function(snapshot) {
+          var eventName = form.theDate.value + ": " + form.eventName.value;
+          ref.once('value', function(snapshot) {
 
             snapshot.forEach(function(childSnapshot) { // FOR EACH USER IN THE DATABASE
               var key = childSnapshot.key(); //username
+              //var childData = childSnapshot.val(); //username contents
               var userRef = new Firebase(ref + '/' + key); //url + username
               var eventRef = userRef.child("zevents");
-
               eventRef.push({event: eventName, attended: false});
-
               console.log(childSnapshot.val().zevents);
+
               var arr = childSnapshot.val().zevents;
               var count = 0; //local variable 
               for (var key in arr){ //FOR EACH EVENT OF THE USER
-
                 for (var key2 in arr[key]){ //FOR EACH EVENT ATTRIBUTE OF THE EVENT
-
                   console.log("key2 in arr[key]: " + arr[key][key2]); 
                   if (arr[key][key2] === false)
                     count++;
                   break;
                 }
-
               }
               var sum = childSnapshot.val().attendance + count; //initial + difference = final
               userRef.update({attendance: sum});
-
-              
-
-
-
-              //var childData = childSnapshot.val(); //username contents
             });
           });
           /*
@@ -253,6 +243,23 @@
           row.append($("<th/>").append("testing"));
           $("#datatable").append(row);
           */
+        };
+
+        function attendees(array, childSnapshot){
+
+              var arr = childSnapshot.val().zevents;
+              var count = 0; //local variable 
+              for (var key in arr){ //FOR EACH EVENT OF THE USER
+                for (var key2 in arr[key]){ //FOR EACH EVENT ATTRIBUTE OF THE EVENT
+                  console.log("key2 in arr[key]: " + arr[key][key2]); 
+                  if (arr[key][key2] === false)
+                    count++;
+                  break;
+                }
+              }
+              var sum = childSnapshot.val().attendance + count; //initial + difference = final
+              userRef.update({attendance: sum});
+
         };
         // Keep a mapping of firebase locations to HTML elements, so we can move / remove elements as necessary.
         var tr_References = {};
