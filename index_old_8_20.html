@@ -98,7 +98,53 @@
                 </fieldset>
             </form>
           </li>
+          <li>
+
+            <form name="myform" id="my-form" method="post">
+              <input type="text" name="in" value="some data" />
+
+                Name: <input type="text" name="myname"> <br/>
+                Favorite fruits: <br/>
+                <input type="checkbox" name="fav[]">Apple <br/>
+                <input type="checkbox" name="fav[]">Banana <br/>
+                <input type="checkbox" name="fav[]">Orange <br/>
+                <input type="checkbox" name="fav[]">Mango <br/>
+
+
+              <button type="submit">Go</button>
+            </form>
+          </li>
         </ul>
+        <!--
+        <div id="table" class="table-editable">
+          <button onclick="insert()">Try it</button>
+          <span class="table-add glyphicon glyphicon-plus"></span>
+          <table id="theTable" class="table">
+            <tr>
+              <th>First Name</th>
+              <th>Last Name</th>
+              <th>Email Address</th>
+              <th>Position</th>
+            </tr>
+            <tr>
+              <td contenteditable="true">Brandon</td>
+              <td contenteditable="true">Chen</td>
+              <td contenteditable="true">bchen36@illinois.edu</td>
+              <td contenteditable="true">Technology VP</td>
+            </tr>
+
+            <tr class="hide">
+              <td contenteditable="true">undefined</td>
+              <td contenteditable="true">undefined</td>
+              <td contenteditable="true">undefined</td>
+              <td contenteditable="true">undefined</td>
+              <td>
+                <span class="table-remove glyphicon glyphicon-remove"></span>
+              </td>
+            </tr>
+          </table>
+        </div>
+        -->
       </div>
 
       <div id="table" class="table-editable">
@@ -118,6 +164,10 @@
           <input class="score" type="text" id="scoreInput" placeholder="Record your score...">
         </div>
         -->
+        <table id="datatable2" class="table">
+            <tr>
+            </tr>
+        </table>
       </div>
 
       <script>
@@ -169,6 +219,14 @@
             }
           });
         }
+        /* DOESNT WORK ATM!!!!
+        function updateUser(){
+          console.log("updateUser engaged");
+          //var userRef = 'https://vivid-torch-8260.firebaseio.com/' + userData.val().lastName + '_' + userData.val().firstName; //the URL
+          var userRef1 = 'https://vivid-torch-8260.firebaseio.com/s_brandon'; //the URL
+          userRef1.update({ attendance: ++userRef1.val().attendance }, onComplete);
+        }
+        */
         function newEvent(form){ //for all users
 
           var eventName = form.theDate.value + ": " + form.eventName.value;
@@ -196,6 +254,11 @@
               userRef.update({attendance: sum});
             });
           });
+          /*
+          var row = $("<tr/>");
+          row.append($("<th/>").append("testing"));
+          $("#datatable").append(row);
+          */
         };
 
         function attendees(array, childSnapshot){
@@ -301,6 +364,26 @@
         };
         dataView.on('child_moved', updateTable);
         dataView.on('child_changed', updateTable);
+
+        /* When the user presses enter on scoreInput, add the score, and update the highest score.
+        $("#scoreInput").keypress(function (e) {
+          if (e.keyCode == 13) {
+            var newScore = $("#scoreInput").val();
+            var info = $("#infoInput").val();
+            var name = $("#nameInput").val();
+            $("#scoreInput").val("");
+
+            if (name.length === 0)
+              return;
+
+            var userScoreRef = ref.child(name);
+
+            // Use setWithPriority to put the name / score in Firebase, and set the priority to be the score.
+            userScoreRef.setWithPriority({ name:name, info:info, score:newScore }, name);
+          }
+        });
+        */
+
       </script>
 
       <footer>
