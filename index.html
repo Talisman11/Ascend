@@ -98,6 +98,25 @@
                 </fieldset>
             </form>
           </li>
+<<<<<<< HEAD
+=======
+          <li>
+
+            <form name="myform" id="my-form" method="post">
+              <input type="text" name="in" value="some data" />
+
+                Name: <input type="text" name="myname"> <br/>
+                Favorite fruits: <br/>
+                <input type="checkbox" name="fav[]">Apple <br/>
+                <input type="checkbox" name="fav[]">Banana <br/>
+                <input type="checkbox" name="fav[]">Orange <br/>
+                <input type="checkbox" name="fav[]">Mango <br/>
+
+
+              <input id="button" type="submit">Go</button>
+            </form>
+          </li>
+>>>>>>> origin/gh-pages
         </ul>
       </div>
 
@@ -234,6 +253,21 @@
             if (e.preventDefault) e.preventDefault();
 
             /* do what you want with the form */
+
+            // How many options we have?
+            var fav_count = document.getElementsByName('fav[]');
+            var is_checked = false;
+             
+            for (var i = 0; i < fav_count; i++) {
+                if (document.myform.elements['fav[]'].checked) {
+                    is_checked = true;
+                    break;
+                }
+            }
+             
+            if (is_checked == false) {
+                window.alert('Please select at least 1 favorite fruit');
+            }
 
             // You must return false to prevent the default form behavior
             return false;
