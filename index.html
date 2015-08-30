@@ -89,8 +89,8 @@
               </div>
             </div>
           </li>
-          <li hidden>
-            <form name="event" class="removable" hidden>
+          <li hidden="true">
+            <form name="event" class="removable" hidden="true">
                 <fieldset>
                   <input type="text" name="eventName" placeholder="Event Name"> 
                   <input type="date" name="theDate">
@@ -166,18 +166,16 @@
             } else {
               displayAuth(form);
               $('#logModal').remove();
-              console.log("Authenticated successfully with payload:", authData);
-              
-
+              console.log("Authenticated successfully with payload:", authData);              
             }
           });
         };
 
         function displayAuth(form){
               if (form.em.value == "uiuc@ascendleadership.org"){ //admin
-                document.getElementsByTagName("removable")[0].removeAttribute("hidden");
+                document.getElementsByTagName("removable")[0].removeAttribute("hidden", "false");
               }              
-              document.getElementsByTagName("removable")[1].removeAttribute("hidden");
+              document.getElementsByTagName("removable")[1].removeAttribute("hidden", "false");
         };
         function newEvent(form){ //for all users
 
