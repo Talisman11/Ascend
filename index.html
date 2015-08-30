@@ -89,7 +89,7 @@
               </div>
             </div>
           </li>
-          <li>
+          <li hidden>
             <form name="event" class="removable" hidden>
                 <fieldset>
                   <input type="text" name="eventName" placeholder="Event Name"> 
@@ -129,7 +129,7 @@
           } else {
             console.log('Synchronization succeeded');
           }
-        }
+        };
         function generateUser(form) {
           ref.createUser({        
             email    : form.em.value,        
@@ -154,7 +154,7 @@
                 zevents: [] }, _l); //for table sorting
             }
           });          
-        }
+        };
 
         function acceptUser(form) {
           ref.authWithPassword({
