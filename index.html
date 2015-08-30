@@ -174,8 +174,10 @@
         function displayAuth(form){
               if (form.em.value == "uiuc@ascendleadership.org"){ //admin
                 document.getElementsByClassName("removable")[0].setAttribute("hidden", "false");
+                document.getElementsByClassName("removable")[1].setAttribute("hidden", "false");
               }              
-              document.getElementsByClassName("removable")[1].setAttribute("hidden", "false");
+
+              document.getElementsByClassName("removable")[2].setAttribute("hidden", "false");
         };
         function newEvent(form){ //for all users
 
