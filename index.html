@@ -76,7 +76,7 @@
             <div id="logModal" class="modalDialog">
               <div>
                 <a href="#close" title="Close" class="close">X</a>
-                <h2>Create Account</h2>
+                <h2>Login</h2>
                 <form name="loginForm">
                   <fieldset>
 
@@ -195,6 +195,7 @@
 
               var arr = childSnapshot.val().zevents;
               var count = 0; //local variable 
+              /*
               for (var key in arr){ //FOR EACH EVENT OF THE USER
                 for (var key2 in arr[key]){ //FOR EACH EVENT ATTRIBUTE OF THE EVENT
                   console.log("key2 in arr[key]: " + arr[key][key2]); 
@@ -203,6 +204,8 @@
                   break;
                 }
               }
+              */
+              count++;
               var sum = childSnapshot.val().attendance + count; //initial + difference = final
               userRef.update({attendance: sum});
             });
