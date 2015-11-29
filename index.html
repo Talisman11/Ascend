@@ -186,7 +186,7 @@
               } else { //user
                 document.getElementsByClassName("display")[0].removeAttribute("hidden");
                 ref.once('value', function(snapshot) {
-                  var key = snapshot.key(); // username
+                  var key = snapshot.val(); 
                   console.log(key);
                 })
               }             
@@ -264,7 +264,7 @@
           member.append($("<td/>").append($("<em/>").text(userData.val().phoneNumber))); 
           member.append($("<td/>").append($("<em/>").text(userData.val().email))); 
           member.append($("<td/>").append($("<em/>").text(userData.val().attendance))); 
-          // member.append($("<td/>").text(userData.val().score));
+          
           // Store a reference to the table row so we can get it again later.
           tr_References[userData.key()] = member;
 
@@ -276,6 +276,18 @@
             var lowerScoreRow = tr_References[prevName];
             lowerScoreRow.before(member);
           }
+        }
+        function showUser(userData) { //just like addUser but for the unique user
+          var member = $("<tr/>");
+
+          member.append($("<td/>").append($("<em/>").text(userData.val().netid))); 
+          member.append($("<td/>").append($("<em/>").text(userData.val().lastName))); 
+          member.append($("<td/>").append($("<em/>").text(userData.val().firstName))); 
+          member.append($("<td/>").append($("<em/>").text(userData.val().phoneNumber))); 
+          member.append($("<td/>").append($("<em/>").text(userData.val().email))); 
+          member.append($("<td/>").append($("<em/>").text(userData.val().attendance))); 
+          
+          $("#singletable").append(member);
         }
 
         // Helper function to handle a score object being removed; just removes the corresponding table row.
