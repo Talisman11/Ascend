@@ -52,18 +52,9 @@
                     <br>  <input type="text" id="ln" placeholder="Last name">  <br>
                     <br>  <input type="number" id="p" placeholder="Phone (no symbols)"> <br>
                     <br>  <input type="email" id="em" placeholder="Email"> <br>
+                    <br>  <input type="text" id="netid" placeholder="NetID"> <br>
                     <br>  <input type="password" id="pw" placeholder="Password"> <br>
                     
-                    <br>  <input type="password" id="pwr"placeholder="Retype Password"> <br>
-                    <p id="pwstatus">Password status:</p>
-                    <script>
-                      if (this.pw.value === this.pwr.value){
-                        this.pwstatus.innerHTML = "Password status: Passwords match";
-                      }
-                      else{
-                        this.pwstatus.innerHTML = "Password status: Passwords do not match";
-                      }
-                    </script>
                     <button type="button" onClick="generateUser(this.form)">Submit</button>
                   </fieldset>
                </form>
@@ -104,6 +95,7 @@
       <div id="table" class="table-editable removable" hidden="true">
         <table id="datatable" class="table">
           <tr>
+            <th>NetID</th>
             <th>Last Name</th>
             <th>First Name</th>
             <th>Phone Number</th>
@@ -118,6 +110,20 @@
           <input class="score" type="text" id="scoreInput" placeholder="Record your score...">
         </div>
         -->
+      </div>
+
+      <div id="unique_table" class="table-editable display" hidden="true">
+        <table id="singletable" class="table">
+        <tr>
+            <th>NetID</th>
+            <th>Last Name</th>
+            <th>First Name</th>
+            <th>Phone Number</th>
+            <th>Email</th>
+            <th>Attendance</th>
+        </tr>
+        </table>
+
       </div>
 
       <script>
@@ -146,11 +152,12 @@
               var _f = form.fn.value;
               var _l = form.ln.value;
               var _n = form.p.value; //number
+              var _net = form.netid.value;
               var _e = form.em.value;
               var _p = form.pw.value;
               var user = ref.child(_l + '_' + _f); //name stored in database
 
-              user.setWithPriority({ firstName:_f, lastName:_l, phoneNumber:_n, email:_e, password:_p, attendance: 0, 
+              user.setWithPriority({ firstName:_f, lastName:_l, phoneNumber:_n, netid:_net, email:_e, password:_p, attendance: 0, 
                 zevents: [] }, _l); //for table sorting
             }
           });          
@@ -173,12 +180,17 @@
 
         function displayAuth(form){
               if (form.em.value == "uiuc@ascendleadership.org"){ //admin
-                //document.getElementsByClassName("removable")[0].setAttribute("hidden", "false");
                 document.getElementsByClassName("removable")[0].removeAttribute("hidden");
                 document.getElementsByClassName("removable")[1].removeAttribute("hidden");
-              }              
+                document.getElementsByClassName("removable")[2].removeAttribute("hidden");
+              } else { //user
+                document.getElementsByClassName("display")[0].removeAttribute("hidden");
+                ref.once('value', function(snapshot) {
+                  var key = snapshot.key(); // username
+                  console.log(key);
+                })
+              }             
 
-              document.getElementsByClassName("removable")[2].removeAttribute("hidden");
         };
         function newEvent(form){ //for all users
 
@@ -195,16 +207,9 @@
 
               var arr = childSnapshot.val().zevents;
               var count = 0; //local variable 
-              /*
-              for (var key in arr){ //FOR EACH EVENT OF THE USER
-                for (var key2 in arr[key]){ //FOR EACH EVENT ATTRIBUTE OF THE EVENT
-                  console.log("key2 in arr[key]: " + arr[key][key2]); 
-                  if (arr[key][key2] === false)
-                    count++;
-                  break;
-                }
-              }
-              */
+
+
+
               count++;
               var sum = childSnapshot.val().attendance + count; //initial + difference = final
               userRef.update({attendance: sum});
@@ -253,6 +258,7 @@
         function addUser(userData, prevName) {
           var member = $("<tr/>");
 
+          member.append($("<td/>").append($("<em/>").text(userData.val().netid))); 
           member.append($("<td/>").append($("<em/>").text(userData.val().lastName))); 
           member.append($("<td/>").append($("<em/>").text(userData.val().firstName))); 
           member.append($("<td/>").append($("<em/>").text(userData.val().phoneNumber))); 
