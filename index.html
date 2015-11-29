@@ -188,6 +188,8 @@
                 ref.once('value', function(snapshot) {
                   var key = snapshot.val(); 
                   console.log(key);
+                  var name = form.ln.value + "_" + form.fn.value;
+                  showUser(name);
                 })
               }             
 
