@@ -192,6 +192,7 @@
                 document.getElementsByClassName("removable")[0].removeAttribute("hidden");
                 document.getElementsByClassName("removable")[1].removeAttribute("hidden");
                 document.getElementsByClassName("removable")[2].removeAttribute("hidden");
+                document.getElementsByClassName("removable")[3].removeAttribute("hidden");
               } else { //user
                 document.getElementsByClassName("display")[0].removeAttribute("hidden");
                 ref.once('value', function(snapshot) {
@@ -247,7 +248,7 @@
 
           ref.once('value', function(snapshot) {
             snapshot.forEach(function(childSnapshot) {
-              if (netID == childSnapshot.val().netID) {
+              if (netID == childSnapshot.val().netid) {
                 var key = childSnapshot.key(); //username
                 var userRef = new Firebase(ref + '/' + key);
 
