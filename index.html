@@ -212,7 +212,7 @@
             if (target == userData.val().email) {
               var adminShot = snapshot.child("Ascend_admin");
               var totalEvents = adminShot.val().attendance;
-              var attendancePercent = userData.val().attendance / totalEvents;
+              var attendancePercent = 100 * (userData.val().attendance / totalEvents);
               console.log("adminShot: " + adminShot + "totalEvents: " + totalEvents + "attendancePercent: " + attendancePercent);
 
               var member = $("<tr/>");
@@ -223,7 +223,7 @@
               member.append($("<td/>").append($("<em/>").text(userData.val().email))); 
               member.append($("<td/>").append($("<em/>").text(userData.val().attendance))); 
               member.append($("<td/>").append($("<em/>").text(totalEvents))); 
-              member.append($("<td/>").append($("<em/>").text(attendancePercent))); 
+              member.append($("<td/>").append($("<em/>").text(attendancePercent + "%"))); 
               $("#singletable").append(member); 
             }
           })
@@ -274,22 +274,6 @@
           });
         };
 
-        function attendees(array, childSnapshot){
-
-              var arr = childSnapshot.val().zevents;
-              var count = 0; //local variable 
-              for (var key in arr){ //FOR EACH EVENT OF THE USER
-                for (var key2 in arr[key]){ //FOR EACH EVENT ATTRIBUTE OF THE EVENT
-                  console.log("key2 in arr[key]: " + arr[key][key2]); 
-                  if (arr[key][key2] === false)
-                    count++;
-                  break;
-                }
-              }
-              var sum = childSnapshot.val().attendance + count; //initial + difference = final
-              userRef.update({attendance: sum});
-
-        };
 /////////////////////////
 
         // Keep a mapping of firebase locations to HTML elements, so we can move / remove elements as necessary.
