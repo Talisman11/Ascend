@@ -185,13 +185,9 @@
                 document.getElementsByClassName("removable")[2].removeAttribute("hidden");
               } else { //user
                 document.getElementsByClassName("display")[0].removeAttribute("hidden");
-                ref.once('value', function(snapshot) {
-                  var key = snapshot.val(); 
-                  console.log(key);
-                  var name = form.ln.value + "_" + form.fn.value;
-
-                  showUser(ref.child(name));
-                })
+                
+                var name = form.ln.value + "_" + form.fn.value;
+                showUser(ref.child(name));
               }             
 
         };
