@@ -210,6 +210,8 @@
           var eventName = form.theDate.value + ": " + form.eventName.value;
           ref.once('value', function(snapshot) {
             var adminRef = ref.child("Ascend_admin");
+            console.log(adminRef);
+            console.log(adminRef.val());
             var added = adminRef.attendance + 1;
             adminRef.update({attendance: added});
 
