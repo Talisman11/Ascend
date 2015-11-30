@@ -142,6 +142,7 @@
       <script>
         var ref = new Firebase('https://vivid-torch-8260.firebaseio.com/'); //the database url
 
+
         var onComplete = function(error) {
           if (error) {
             console.log('Synchronization failed');
@@ -286,8 +287,8 @@
           ref.once('value', function(snapshot) {
             var adminShot = snapshot.child("Ascend_admin");
             totalEvents = adminShot.val().attendance;
-          });
-          
+          })
+
           var attendancePercent = userData.val().attendance / totalEvents;
 
           member.append($("<td/>").append($("<em/>").text(userData.val().netid))); 
