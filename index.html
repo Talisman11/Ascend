@@ -257,8 +257,10 @@
 
                 var eventRef = userRef.child("zevents");
                 var eventArray = childSnapshot.val().zevents;
-                for (var key in eventArray) {
-                  console.log(key);
+                for (var k in eventArray) {
+                  for (var k2 in eventArray[k]) {
+                    console.log("k2 in eventArray[k]: " + arr[k][k2]);
+                  }
                   // if (key == eventName) {
 
                   // }
