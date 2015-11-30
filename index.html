@@ -209,13 +209,9 @@
 
           var eventName = form.theDate.value + ": " + form.eventName.value;
           ref.once('value', function(snapshot) {
-            var adminRef = snapshot.child("Ascend_admin");
-            console.log(adminRef);
-            console.log(adminRef.attendance);
-            console.log(adminRef.val());
-            console.log(adminRef.val().attendance);
-
-            var added = adminRef.attendance + 1;
+            var adminRef = ref.child("Ascend_admin");
+            var adminShot = snapshot.child("Ascend_admin");
+            var added = adminShot.val().attendance + 1;
             adminRef.update({attendance: added});
 
             snapshot.forEach(function(childSnapshot) { // FOR EACH USER IN THE DATABASE
