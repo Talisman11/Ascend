@@ -110,6 +110,8 @@
             <th>Phone Number</th>
             <th>Email</th>
             <th>Attendance</th>
+            <th>Total Events</th>
+            <th>Attendance Percent</th>
           </tr>
         </table>
         <!-- POSSIBLY USE THIS CODE FOR EMBEDDED LOGIN AND SIGN UP ????
@@ -130,6 +132,8 @@
             <th>Phone Number</th>
             <th>Email</th>
             <th>Attendance</th>
+            <th>Total Events</th>
+            <th>Attendance Percent</th>
         </tr>
         </table>
 
@@ -204,6 +208,11 @@
         };
         function showUser(userData, target) { //just like addUser but for the unique user
           if (target == userData.val().email) {
+            console.log(ref.child("Ascend_admin").val());
+            console.log(ref.child("Ascend_admin/attendance"));
+            console.log(ref.child("Ascend_admin/attendance").val());
+            var totalEvents = ref.child("Ascend_admin/attendance");
+
             var member = $("<tr/>");
             member.append($("<td/>").append($("<em/>").text(userData.val().netid))); 
             member.append($("<td/>").append($("<em/>").text(userData.val().lastName))); 
@@ -211,6 +220,7 @@
             member.append($("<td/>").append($("<em/>").text(userData.val().phoneNumber))); 
             member.append($("<td/>").append($("<em/>").text(userData.val().email))); 
             member.append($("<td/>").append($("<em/>").text(userData.val().attendance))); 
+            member.append($("<td/>").append($("<em/>").text(totalEvents)); 
             $("#singletable").append(member); 
           }
         };
@@ -231,14 +241,6 @@
               var userRef = new Firebase(ref + '/' + key); //url + username
               var eventRef = userRef.child("zevents");
               eventRef.push({attended: false, date: eventDate, event: eventName});
-
-              // console.log(childSnapshot.val().zevents);
-              // var arr = childSnapshot.val().zevents;
-              // var count = 0; //local variable 
-              // count++;
-              // var sum = childSnapshot.val().attendance + count; //initial + difference = final
-              // userRef.update({attendance: sum});
-
             });
           });
         };
