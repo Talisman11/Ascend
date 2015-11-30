@@ -185,7 +185,9 @@
                 document.getElementsByClassName("removable")[2].removeAttribute("hidden");
               } else { //user
                 document.getElementsByClassName("display")[0].removeAttribute("hidden");
-                
+                console.log(form);
+                console.log(form.ln.value);
+                console.log(form.ln);
                 var name = form.ln.value + "_" + form.fn.value;
                 showUser(ref.child(name));
               }             
