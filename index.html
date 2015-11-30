@@ -299,7 +299,7 @@
         function addUser(userData, prevName) {
           var member = $("<tr/>");
 
-          var adminShot = snapshot.parent();
+          var adminShot = userData.parent();
           var totalEvents = adminShot.val().attendance;
           var attendancePercent = userData.val().attendance / totalEvents;
 
