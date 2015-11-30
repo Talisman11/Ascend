@@ -217,19 +217,20 @@
 
         function newEvent(form){ //for all users
 
-          var eventName = form.theDate.value + ": " + form.eventName.value;
+          var eventName = form.eventName.value;
+          var eventDate = form.theDate.value;
           ref.once('value', function(snapshot) {
             var adminRef = ref.child("Ascend_admin");
             var adminShot = snapshot.child("Ascend_admin");
             var added = adminShot.val().attendance + 1;
-            adminRef.update({attendance: added});
+            adminRef.update({attendance: added}); //update total num_events
 
             snapshot.forEach(function(childSnapshot) { // FOR EACH USER IN THE DATABASE
               var key = childSnapshot.key(); //username
               //var childData = childSnapshot.val(); //username contents
               var userRef = new Firebase(ref + '/' + key); //url + username
               var eventRef = userRef.child("zevents");
-              eventRef.push({event: eventName, attended: false});
+              eventRef.push({attended: false, date: eventDate, event: eventName});
 
               // console.log(childSnapshot.val().zevents);
               // var arr = childSnapshot.val().zevents;
@@ -260,6 +261,12 @@
                 for (var k in eventArray) {
                   for (var k2 in eventArray[k]) {
                     console.log("k2 in eventArray[k]: " + eventArray[k][k2]);
+                    console.log("test: " + eventArray[k].event);
+                    console.log("test: " + eventArray[k].val().event);
+
+                    if (eventArray[k][k2] == eventName) {
+                      eventRef.update({attended: true});
+                    }
                   }
                   // if (key == eventName) {
 
