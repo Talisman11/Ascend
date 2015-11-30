@@ -179,18 +179,20 @@
         };
 
         function displayAuth(form){
-            console.log(form.em.value);
               if (form.em.value == "uiuc@ascendleadership.org"){ //admin
                 document.getElementsByClassName("removable")[0].removeAttribute("hidden");
                 document.getElementsByClassName("removable")[1].removeAttribute("hidden");
                 document.getElementsByClassName("removable")[2].removeAttribute("hidden");
               } else { //user
                 document.getElementsByClassName("display")[0].removeAttribute("hidden");
-                console.log(form);
-                console.log(form.ln.value);
-                console.log(form.ln);
-                var name = form.ln.value + "_" + form.fn.value;
-                showUser(ref.child(name));
+                ref.once('value', function(snapshot) {
+                  snapshot.forEach(function(childSnapshot) {
+                    var childData = childSnapshot.val();
+                    console.log(childData);
+                    console.log(childData.val());
+                    console.log(childData.val().firstName);
+                  })
+                })
               }             
 
         };
@@ -234,22 +236,6 @@
               var sum = childSnapshot.val().attendance + count; //initial + difference = final
               userRef.update({attendance: sum});
 
-        };
-        function test(form){
-          // How many options we have?
-          var fav_count = document.getElementsByName('fav[]');
-          var is_checked = false;
-           
-          for (var i = 0; i < fav_count; i++) {
-              if (document.myform.elements['fav[]'].checked) {
-                  is_checked = true;
-                  break;
-              }
-          }
-           
-          if (is_checked == false) {
-              window.alert('Please select at least 1 favorite fruit');
-          }
         };
 /////////////////////////
 
