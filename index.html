@@ -254,29 +254,19 @@
                 var userRef = new Firebase(ref + '/' + key);
 
                 var added = childSnapshot.val().attendance + 1;
-                userRef.update({attendance: added});
+                userRef.update({attendance: added}); //update count
 
                 var eventRef = userRef.child("zevents");
                 var eventArray = childSnapshot.val().zevents;
                 for (var k in eventArray) {
-                  for (var k2 in eventArray[k]) {
-                    console.log("k2 in eventArray[k]: " + eventArray[k][k2]);
-                    console.log("test: " + eventArray[k].event);
-                    console.log("test: " + eventArray[k].val().event);
-
-                    if (eventArray[k][k2] == eventName) {
-                      eventRef.update({attended: true});
-                    }
+                  if (eventArray[k].event == eventName) {
+                      eventRef.update({attended: true}); //update event
                   }
-                  // if (key == eventName) {
-
-                  // }
                 }
-                // eventRef.update()
               }
-            })
-          })
-        }
+            });
+          });
+        };
 
         function attendees(array, childSnapshot){
 
