@@ -252,14 +252,14 @@
                 var userRef = new Firebase(ref + '/' + key);
 
                 var added = childSnapshot.val().attendance + 1;
-                userRef.update(attendance: added);
+                userRef.update({attendance: added});
 
                 var eventRef = userRef.child("zevents");
                 var eventArray = childSnapshot.val().zevents;
                 for (var key in eventArray) {
                   console.log(key);
                   // if (key == eventName) {
-                    
+
                   // }
                 }
                 // eventRef.update()
