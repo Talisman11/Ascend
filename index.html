@@ -81,6 +81,15 @@
             </div>
           </li>
           <li class="removable" hidden="true">
+            <form name="attend" class="removable" hidden="true">
+              <fieldset>
+                <input type="text" name="netID" placeholder="Attendee NetID">
+                <input type="text" name="event" placeholder="Event name">
+                <button type="button" onClick="attendEvent(this.form)">Count attendance</button>
+              </fieldset>
+            </form>
+          </li>
+          <li class="removable" hidden="true">
             <form name="event" class="removable" hidden="true">
                 <fieldset>
                   <input type="text" name="eventName" placeholder="Event Name"> 
@@ -231,6 +240,33 @@
             });
           });
         };
+
+        function attendEvent(form) {
+          var netID = form.netID.value;
+          var eventName = form.event.value;
+
+          ref.once('value', function(snapshot) {
+            snapshot.forEach(function(childSnapshot) {
+              if (netID == childSnapshot.val().netID) {
+                var key = childSnapshot.key(); //username
+                var userRef = new Firebase(ref + '/' + key);
+
+                var added = childSnapshot.val().attendance + 1;
+                userRef.update(attendance: added);
+
+                var eventRef = userRef.child("zevents");
+                var eventArray = childSnapshot.val().zevents;
+                for (var key in eventArray) {
+                  console.log(key);
+                  // if (key == eventName) {
+                    
+                  // }
+                }
+                // eventRef.update()
+              }
+            })
+          })
+        }
 
         function attendees(array, childSnapshot){
 
