@@ -273,23 +273,6 @@
             });
           });
         };
-
-        function attendees(array, childSnapshot){
-
-              var arr = childSnapshot.val().zevents;
-              var count = 0; //local variable 
-              for (var key in arr){ //FOR EACH EVENT OF THE USER
-                for (var key2 in arr[key]){ //FOR EACH EVENT ATTRIBUTE OF THE EVENT
-                  console.log("key2 in arr[key]: " + arr[key][key2]); 
-                  if (arr[key][key2] === false)
-                    count++;
-                  break;
-                }
-              }
-              var sum = childSnapshot.val().attendance + count; //initial + difference = final
-              userRef.update({attendance: sum});
-
-        };
 /////////////////////////
 
         // Keep a mapping of firebase locations to HTML elements, so we can move / remove elements as necessary.
@@ -299,8 +282,12 @@
         function addUser(userData, prevName) {
           var member = $("<tr/>");
 
-          var adminShot = userData.parent();
-          var totalEvents = adminShot.val().attendance;
+          var totalEvents = 0;
+          ref.once('value', function(snapshot) {
+            var adminShot = snapshot.child("Ascend_admin");
+            totalEvents = adminShot.val().attendance;
+          });
+          
           var attendancePercent = userData.val().attendance / totalEvents;
 
           member.append($("<td/>").append($("<em/>").text(userData.val().netid))); 
