@@ -211,7 +211,11 @@
           ref.once('value', function(snapshot) {
             var adminRef = ref.child("Ascend_admin");
             console.log(adminRef);
-            console.log(adminRef.val());
+            console.log(adminRef.attendance);
+
+            console.log(ref);
+            console.log(ref.val());
+            console.log(ref.val().attendance);
             var added = adminRef.attendance + 1;
             adminRef.update({attendance: added});
 
