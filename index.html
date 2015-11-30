@@ -142,7 +142,6 @@
       <script>
         var ref = new Firebase('https://vivid-torch-8260.firebaseio.com/'); //the database url
 
-
         var onComplete = function(error) {
           if (error) {
             console.log('Synchronization failed');
@@ -226,8 +225,8 @@
               member.append($("<td/>").append($("<em/>").text(totalEvents))); 
               member.append($("<td/>").append($("<em/>").text(attendancePercent))); 
               $("#singletable").append(member); 
-            }
-          })
+            })
+          }
         };
 
         function newEvent(form){ //for all users
@@ -274,6 +273,23 @@
             });
           });
         };
+
+        function attendees(array, childSnapshot){
+
+              var arr = childSnapshot.val().zevents;
+              var count = 0; //local variable 
+              for (var key in arr){ //FOR EACH EVENT OF THE USER
+                for (var key2 in arr[key]){ //FOR EACH EVENT ATTRIBUTE OF THE EVENT
+                  console.log("key2 in arr[key]: " + arr[key][key2]); 
+                  if (arr[key][key2] === false)
+                    count++;
+                  break;
+                }
+              }
+              var sum = childSnapshot.val().attendance + count; //initial + difference = final
+              userRef.update({attendance: sum});
+
+        };
 /////////////////////////
 
         // Keep a mapping of firebase locations to HTML elements, so we can move / remove elements as necessary.
@@ -281,15 +297,16 @@
 
         // Helper function that takes a new score snapshot and adds an appropriate row to our leaderboard table.
         function addUser(userData, prevName) {
-          var member = $("<tr/>");
+
 
           var totalEvents = 0;
           ref.once('value', function(snapshot) {
             var adminShot = snapshot.child("Ascend_admin");
             totalEvents = adminShot.val().attendance;
           })
-
+          console.log(totalEvents);
           var attendancePercent = userData.val().attendance / totalEvents;
+          var member = $("<tr/>");
 
           member.append($("<td/>").append($("<em/>").text(userData.val().netid))); 
           member.append($("<td/>").append($("<em/>").text(userData.val().lastName))); 
@@ -297,7 +314,6 @@
           member.append($("<td/>").append($("<em/>").text(userData.val().phoneNumber))); 
           member.append($("<td/>").append($("<em/>").text(userData.val().email))); 
           member.append($("<td/>").append($("<em/>").text(userData.val().attendance))); 
-
           member.append($("<td/>").append($("<em/>").text(totalEvents))); 
           member.append($("<td/>").append($("<em/>").text(attendancePercent))); 
           
