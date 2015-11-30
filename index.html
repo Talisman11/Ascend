@@ -187,9 +187,7 @@
                 document.getElementsByClassName("display")[0].removeAttribute("hidden");
                 ref.once('value', function(snapshot) {
                   snapshot.forEach(function(childSnapshot) {
-                    var childData = childSnapshot.val();
-                    console.log(childData);
-                    console.log(childData.firstName);
+                    showUser(childSnapshot, form.em.value);
                   })
                 })
               }             
@@ -264,17 +262,17 @@
             lowerScoreRow.before(member);
           }
         }
-        function showUser(userData) { //just like addUser but for the unique user
-          var member = $("<tr/>");
-
-          member.append($("<td/>").append($("<em/>").text(userData.val().netid))); 
-          member.append($("<td/>").append($("<em/>").text(userData.val().lastName))); 
-          member.append($("<td/>").append($("<em/>").text(userData.val().firstName))); 
-          member.append($("<td/>").append($("<em/>").text(userData.val().phoneNumber))); 
-          member.append($("<td/>").append($("<em/>").text(userData.val().email))); 
-          member.append($("<td/>").append($("<em/>").text(userData.val().attendance))); 
-          
-          $("#singletable").append(member);
+        function showUser(userData, target) { //just like addUser but for the unique user
+          if (target == userData.val().email) {
+            var member = $("<tr/>");
+            member.append($("<td/>").append($("<em/>").text(userData.val().netid))); 
+            member.append($("<td/>").append($("<em/>").text(userData.val().lastName))); 
+            member.append($("<td/>").append($("<em/>").text(userData.val().firstName))); 
+            member.append($("<td/>").append($("<em/>").text(userData.val().phoneNumber))); 
+            member.append($("<td/>").append($("<em/>").text(userData.val().email))); 
+            member.append($("<td/>").append($("<em/>").text(userData.val().attendance))); 
+            $("#singletable").append(member); 
+          }
         }
 
         // Helper function to handle a score object being removed; just removes the corresponding table row.
