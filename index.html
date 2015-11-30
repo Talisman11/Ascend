@@ -225,8 +225,8 @@
               member.append($("<td/>").append($("<em/>").text(totalEvents))); 
               member.append($("<td/>").append($("<em/>").text(attendancePercent))); 
               $("#singletable").append(member); 
-            })
-          }
+            }
+          })
         };
 
         function newEvent(form){ //for all users
@@ -302,7 +302,7 @@
           var adminShot = snapshot.parent();
           var totalEvents = adminShot.val().attendance;
           var attendancePercent = userData.val().attendance / totalEvents;
-          
+
           member.append($("<td/>").append($("<em/>").text(userData.val().netid))); 
           member.append($("<td/>").append($("<em/>").text(userData.val().lastName))); 
           member.append($("<td/>").append($("<em/>").text(userData.val().firstName))); 
