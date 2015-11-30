@@ -299,13 +299,6 @@
         function addUser(userData, prevName) {
 
 
-          var totalEvents = 0;
-          ref.once('value', function(snapshot) {
-            var adminShot = snapshot.child("Ascend_admin");
-            totalEvents = adminShot.val().attendance;
-          })
-          console.log(totalEvents);
-          var attendancePercent = userData.val().attendance / totalEvents;
           var member = $("<tr/>");
 
           member.append($("<td/>").append($("<em/>").text(userData.val().netid))); 
@@ -314,8 +307,8 @@
           member.append($("<td/>").append($("<em/>").text(userData.val().phoneNumber))); 
           member.append($("<td/>").append($("<em/>").text(userData.val().email))); 
           member.append($("<td/>").append($("<em/>").text(userData.val().attendance))); 
-          member.append($("<td/>").append($("<em/>").text(totalEvents))); 
-          member.append($("<td/>").append($("<em/>").text(attendancePercent))); 
+          // member.append($("<td/>").append($("<em/>").text(totalEvents))); 
+          // member.append($("<td/>").append($("<em/>").text(attendancePercent))); 
           
           // Store a reference to the table row so we can get it again later.
           tr_References[userData.key()] = member;
