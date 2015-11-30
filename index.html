@@ -209,7 +209,6 @@
         };
         function showUser(userData, target) { //just like addUser but for the unique user
           if (target == userData.val().email) {
-            console.log(ref.child("Ascend_admin").val());
             console.log(ref.child("Ascend_admin/attendance"));
             console.log(ref.child("Ascend_admin/attendance").val());
             var totalEvents = ref.child("Ascend_admin/attendance");
