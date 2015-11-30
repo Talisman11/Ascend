@@ -191,12 +191,27 @@
                   })
                 })
               }             
-
         };
+        function showUser(userData, target) { //just like addUser but for the unique user
+          if (target == userData.val().email) {
+            var member = $("<tr/>");
+            member.append($("<td/>").append($("<em/>").text(userData.val().netid))); 
+            member.append($("<td/>").append($("<em/>").text(userData.val().lastName))); 
+            member.append($("<td/>").append($("<em/>").text(userData.val().firstName))); 
+            member.append($("<td/>").append($("<em/>").text(userData.val().phoneNumber))); 
+            member.append($("<td/>").append($("<em/>").text(userData.val().email))); 
+            member.append($("<td/>").append($("<em/>").text(userData.val().attendance))); 
+            $("#singletable").append(member); 
+          }
+        };
+
         function newEvent(form){ //for all users
 
           var eventName = form.theDate.value + ": " + form.eventName.value;
           ref.once('value', function(snapshot) {
+            var adminRef = ref.child("Ascend_admin");
+            var added = adminRef.val().attendance + 1;
+            adminRef.update({attendance: added});
 
             snapshot.forEach(function(childSnapshot) { // FOR EACH USER IN THE DATABASE
               var key = childSnapshot.key(); //username
@@ -204,16 +219,14 @@
               var userRef = new Firebase(ref + '/' + key); //url + username
               var eventRef = userRef.child("zevents");
               eventRef.push({event: eventName, attended: false});
-              console.log(childSnapshot.val().zevents);
 
-              var arr = childSnapshot.val().zevents;
-              var count = 0; //local variable 
+              // console.log(childSnapshot.val().zevents);
+              // var arr = childSnapshot.val().zevents;
+              // var count = 0; //local variable 
+              // count++;
+              // var sum = childSnapshot.val().attendance + count; //initial + difference = final
+              // userRef.update({attendance: sum});
 
-
-
-              count++;
-              var sum = childSnapshot.val().attendance + count; //initial + difference = final
-              userRef.update({attendance: sum});
             });
           });
         };
@@ -260,18 +273,6 @@
           else {
             var lowerScoreRow = tr_References[prevName];
             lowerScoreRow.before(member);
-          }
-        }
-        function showUser(userData, target) { //just like addUser but for the unique user
-          if (target == userData.val().email) {
-            var member = $("<tr/>");
-            member.append($("<td/>").append($("<em/>").text(userData.val().netid))); 
-            member.append($("<td/>").append($("<em/>").text(userData.val().lastName))); 
-            member.append($("<td/>").append($("<em/>").text(userData.val().firstName))); 
-            member.append($("<td/>").append($("<em/>").text(userData.val().phoneNumber))); 
-            member.append($("<td/>").append($("<em/>").text(userData.val().email))); 
-            member.append($("<td/>").append($("<em/>").text(userData.val().attendance))); 
-            $("#singletable").append(member); 
           }
         }
 
