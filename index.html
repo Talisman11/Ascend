@@ -301,6 +301,8 @@
             tr_References[userData.key()] = member;
 
             // Insert the new score in the appropriate place in the table.
+            
+          }); 
             if (prevName === null) {
               $("#datatable").append(member);
             }
@@ -308,7 +310,6 @@
               var lowerScoreRow = tr_References[prevName];
               lowerScoreRow.before(member);
             }
-          }); 
         }
 
         // Helper function to handle a score object being removed; just removes the corresponding table row.
