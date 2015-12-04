@@ -286,6 +286,7 @@
 
         // Helper function that takes a new score snapshot and adds an appropriate row to our leaderboard table.
         function addUser(userData, prevName) {
+          console.log("addUser totalEvents" + totalEvents);
           var attendancePercent = 100 * (userData.val().attendance / totalEvents);
 
           var member = $("<tr/>");
@@ -295,7 +296,6 @@
           member.append($("<td/>").append($("<em/>").text(userData.val().phoneNumber))); 
           member.append($("<td/>").append($("<em/>").text(userData.val().email))); 
           member.append($("<td/>").append($("<em/>").text(userData.val().attendance))); 
-          member.append($("<td/>").append($("<em/>").text(totalEvents))); 
           member.append($("<td/>").append($("<em/>").text(attendancePercent))); 
           
           // Store a reference to the table row so we can get it again later.
