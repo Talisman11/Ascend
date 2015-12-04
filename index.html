@@ -216,9 +216,9 @@
 
             if (target == userData.val().email) {
               var adminShot = snapshot.child("Ascend_admin");
-              var totalEvents = adminShot.val().attendance;
-              var attendancePercent = 100 * (userData.val().attendance / totalEvents);
-              console.log("adminShot: " + adminShot + "totalEvents: " + totalEvents + "attendancePercent: " + attendancePercent);
+              var t = adminShot.val().attendance;
+              var attendancePercent = 100 * (userData.val().attendance / t);
+              console.log("adminShot: " + adminShot + "totalEvents: " + t + "attendancePercent: " + attendancePercent);
 
               var member = $("<tr/>");
               member.append($("<td/>").append($("<em/>").text(userData.val().netid))); 
@@ -227,7 +227,7 @@
               member.append($("<td/>").append($("<em/>").text(userData.val().phoneNumber))); 
               member.append($("<td/>").append($("<em/>").text(userData.val().email))); 
               member.append($("<td/>").append($("<em/>").text(userData.val().attendance))); 
-              member.append($("<td/>").append($("<em/>").text(totalEvents))); 
+              member.append($("<td/>").append($("<em/>").text(t))); 
               member.append($("<td/>").append($("<em/>").text(attendancePercent + "%"))); 
               $("#singletable").append(member); 
             }
