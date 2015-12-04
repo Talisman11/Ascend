@@ -201,7 +201,6 @@
               } else { //user
                 document.getElementsByClassName("display")[0].removeAttribute("hidden");
                 ref.once('value', function(snapshot) {
-
                   showUser(snapshot, form.em.value);
                 })
               }             
@@ -282,17 +281,19 @@
         // Helper function that takes a new score snapshot and adds an appropriate row to our leaderboard table.
         function addUser(userData, prevName) {
 
+          var adminShot = userData.child("Ascend_admin");
+          var totalEvents = adminShot.val().attendance;
+          var attendancePercent = 100 * (userData.val().attendance / totalEvents);
 
           var member = $("<tr/>");
-
           member.append($("<td/>").append($("<em/>").text(userData.val().netid))); 
           member.append($("<td/>").append($("<em/>").text(userData.val().lastName))); 
           member.append($("<td/>").append($("<em/>").text(userData.val().firstName))); 
           member.append($("<td/>").append($("<em/>").text(userData.val().phoneNumber))); 
           member.append($("<td/>").append($("<em/>").text(userData.val().email))); 
           member.append($("<td/>").append($("<em/>").text(userData.val().attendance))); 
-          // member.append($("<td/>").append($("<em/>").text(totalEvents))); 
-          // member.append($("<td/>").append($("<em/>").text(attendancePercent))); 
+          member.append($("<td/>").append($("<em/>").text(totalEvents))); 
+          member.append($("<td/>").append($("<em/>").text(attendancePercent))); 
           
           // Store a reference to the table row so we can get it again later.
           tr_References[userData.key()] = member;
