@@ -141,7 +141,6 @@
 
       <script>
         var ref = new Firebase('https://vivid-torch-8260.firebaseio.com/'); //the database url
-        var totalEvents = -1;
         var onComplete = function(error) {
           if (error) {
             console.log('Synchronization failed');
@@ -203,13 +202,7 @@
                 ref.once('value', function(snapshot) {
                   showUser(snapshot, form.em.value);
                 })
-              }         
-              ref.once('value', function(snapshot) {
-
-                var adminShot = snapshot.child("Ascend_admin");
-                totalEvents = adminShot.val().attendance;
-                console.log(totalEvents);
-              });   
+              }          
         };
         function showUser(snapshot, target) { //just like addUser but for the unique user
           snapshot.forEach(function(userData) {
@@ -289,26 +282,34 @@
           console.log("addUser totalEvents" + totalEvents);
           var attendancePercent = 100 * (userData.val().attendance / totalEvents);
 
-          var member = $("<tr/>");
-          member.append($("<td/>").append($("<em/>").text(userData.val().netid))); 
-          member.append($("<td/>").append($("<em/>").text(userData.val().lastName))); 
-          member.append($("<td/>").append($("<em/>").text(userData.val().firstName))); 
-          member.append($("<td/>").append($("<em/>").text(userData.val().phoneNumber))); 
-          member.append($("<td/>").append($("<em/>").text(userData.val().email))); 
-          member.append($("<td/>").append($("<em/>").text(userData.val().attendance))); 
-          member.append($("<td/>").append($("<em/>").text(attendancePercent))); 
-          
-          // Store a reference to the table row so we can get it again later.
-          tr_References[userData.key()] = member;
+          ref.once('value', function(snapshot) {
 
-          // Insert the new score in the appropriate place in the table.
-          if (prevName === null) {
-            $("#datatable").append(member);
-          }
-          else {
-            var lowerScoreRow = tr_References[prevName];
-            lowerScoreRow.before(member);
-          }
+            var adminShot = snapshot.child("Ascend_admin");
+            totalEvents = adminShot.val().attendance;
+            console.log(totalEvents);
+            
+            
+            var member = $("<tr/>");
+            member.append($("<td/>").append($("<em/>").text(userData.val().netid))); 
+            member.append($("<td/>").append($("<em/>").text(userData.val().lastName))); 
+            member.append($("<td/>").append($("<em/>").text(userData.val().firstName))); 
+            member.append($("<td/>").append($("<em/>").text(userData.val().phoneNumber))); 
+            member.append($("<td/>").append($("<em/>").text(userData.val().email))); 
+            member.append($("<td/>").append($("<em/>").text(userData.val().attendance))); 
+            member.append($("<td/>").append($("<em/>").text(attendancePercent))); 
+            
+            // Store a reference to the table row so we can get it again later.
+            tr_References[userData.key()] = member;
+
+            // Insert the new score in the appropriate place in the table.
+            if (prevName === null) {
+              $("#datatable").append(member);
+            }
+            else {
+              var lowerScoreRow = tr_References[prevName];
+              lowerScoreRow.before(member);
+            }
+          }); 
         }
 
         // Helper function to handle a score object being removed; just removes the corresponding table row.
