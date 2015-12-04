@@ -241,7 +241,11 @@
               var key = childSnapshot.key(); //username
               //var childData = childSnapshot.val(); //username contents
               var userRef = new Firebase(ref + '/' + key); //url + username
+              var percent = userRef.val().attendance / added;
               var eventRef = userRef.child("zevents");
+
+              
+              userRef.update(totalEvents: added, attendancePercent: percent);
               eventRef.push({attended: false, date: eventDate, event: eventName});
             });
           });
@@ -301,8 +305,6 @@
             tr_References[userData.key()] = member;
 
             // Insert the new score in the appropriate place in the table.
-            
-          }); 
             if (prevName === null) {
               $("#datatable").append(member);
             }
@@ -310,6 +312,7 @@
               var lowerScoreRow = tr_References[prevName];
               lowerScoreRow.before(member);
             }
+          }); 
         }
 
         // Helper function to handle a score object being removed; just removes the corresponding table row.
