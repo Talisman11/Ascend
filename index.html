@@ -141,7 +141,8 @@
 
       <script>
         var ref = new Firebase('https://vivid-torch-8260.firebaseio.com/'); //the database url
-
+        var totalEvents;
+        var attendancePercent;
         var onComplete = function(error) {
           if (error) {
             console.log('Synchronization failed');
@@ -203,7 +204,13 @@
                 ref.once('value', function(snapshot) {
                   showUser(snapshot, form.em.value);
                 })
-              }             
+              }         
+              ref.once('value', function(snapshot) {
+
+                var adminShot = snapshot.child("Ascend_admin");
+                totalEvents = adminShot.val().attendance;
+                console.log(totalEvents);
+              });   
         };
         function showUser(snapshot, target) { //just like addUser but for the unique user
           snapshot.forEach(function(userData) {
