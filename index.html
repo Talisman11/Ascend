@@ -284,14 +284,7 @@
         // Helper function that takes a new score snapshot and adds an appropriate row to our leaderboard table.
         function addUser(userData, prevName) {
 
-          ref.once('value', function(snapshot) {
-
-            var adminShot = snapshot.child("Ascend_admin");
-            totalEvents = adminShot.val().attendance;
-            var attendancePercent = 100 * (userData.val().attendance / totalEvents);
-            console.log(totalEvents);
-
-
+          
             var member = $("<tr/>");
             member.append($("<td/>").append($("<em/>").text(userData.val().netid))); 
             member.append($("<td/>").append($("<em/>").text(userData.val().lastName))); 
@@ -312,7 +305,6 @@
               var lowerScoreRow = tr_References[prevName];
               lowerScoreRow.before(member);
             }
-          }); 
         }
 
         // Helper function to handle a score object being removed; just removes the corresponding table row.
