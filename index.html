@@ -241,7 +241,7 @@
               var key = childSnapshot.key(); //username
               //var childData = childSnapshot.val(); //username contents
               var userRef = new Firebase(ref + '/' + key); //url + username
-              var percent = userRef.val().attendance / added;
+              var percent = childSnapshot.val().attendance / added;
               var eventRef = userRef.child("zevents");
 
 
