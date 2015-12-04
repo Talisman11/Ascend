@@ -281,7 +281,7 @@
         // Helper function that takes a new score snapshot and adds an appropriate row to our leaderboard table.
         function addUser(userData, prevName) {
 
-          var adminShot = userData.child("Ascend_admin");
+          var adminShot = userData.parent("Ascend_admin");
           var totalEvents = adminShot.val().attendance;
           var attendancePercent = 100 * (userData.val().attendance / totalEvents);
 
