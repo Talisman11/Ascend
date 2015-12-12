@@ -166,10 +166,9 @@
               var _n = form.p.value; //number
               var _net = form.pw.value; 
               var _e = form.em.value;
-              var _p = form.pw.value;
               var user = ref.child(_l + '_' + _f); //name stored in database
 
-              user.setWithPriority({ firstName:_f, lastName:_l, phoneNumber:_n, netid:_net, email:_e, password:_p, attendance: 0, 
+              user.setWithPriority({ firstName:_f, lastName:_l, phoneNumber:_n, netid:_net, email:_e, attendance: 0, 
                 zevents: [] }, _l); //for table sorting
             }
           });          
