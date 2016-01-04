@@ -196,6 +196,19 @@
                 document.getElementsByClassName("removable")[2].removeAttribute("hidden");
                 document.getElementsByClassName("removable")[3].removeAttribute("hidden");
                 document.getElementsByClassName("removable")[4].removeAttribute("hidden");
+
+                  ref.once('value', function(snapshot) {
+                    var adminRef = ref.child("Ascend_admin");
+                    var adminShot = snapshot.child("Ascend_admin");
+
+                    snapshot.forEach(function(childSnapshot) { // FOR EACH USER IN THE DATABASE
+                      var key = childSnapshot.key(); //username
+                      var userRef = new Firebase(ref + '/' + key); //url + username
+                      var percent = childSnapshot.val().attendance / childSnapshot.val().totalEvents;
+                      userRef.update({attendancePercent: percent});
+                    });
+                  });
+
               } else { //user
                 document.getElementsByClassName("display")[0].removeAttribute("hidden");
                 ref.once('value', function(snapshot) {
